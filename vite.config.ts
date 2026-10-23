@@ -1,3 +1,4 @@
+/// <reference types="vitest/config" />
 import react from '@vitejs/plugin-react'
 import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
@@ -8,5 +9,12 @@ export default defineConfig({
   resolve: {
     // Alias "@" para importar desde src/ sin rutas relativas largas
     alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) },
+  },
+  test: {
+    // Entorno de navegador simulado para probar componentes y hooks
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: ['./src/test/setup.ts'],
+    include: ['src/**/*.test.{ts,tsx}'],
   },
 })
