@@ -1,0 +1,65 @@
+import type { UiStrings } from '../types'
+
+export const uiEs: UiStrings = {
+  soon: 'Próximamente',
+  titleBar: { searchLabel: 'Buscar archivos y comandos (Ctrl+P)' },
+  menuBar: {
+    label: 'Menús',
+    items: [
+      'Archivo',
+      'Editar',
+      'Ver',
+      'Ir',
+      'Ejecutar',
+      'Terminal',
+      'Ayuda',
+      'Asistente',
+    ],
+  },
+  activityBar: {
+    label: 'Barra de actividad',
+    explorer: 'Explorador',
+    search: 'Búsqueda',
+    sourceControl: 'Control de código fuente',
+    downloadCv: 'Descargar CV',
+    assistant: "Iker's Assistant",
+    settings: 'Ajustes',
+  },
+  sidebar: {
+    explorerTitle: 'PORTFOLIO',
+    searchTitle: 'BÚSQUEDA',
+    assistantButton: "Iker's Assistant",
+    branchLabel: 'Rama actual',
+    foldersLabel: 'Archivos del portfolio',
+  },
+  tabs: { listLabel: 'Archivos abiertos', close: (nombre) => `Cerrar ${nombre}` },
+  breadcrumbs: { label: 'Ruta del archivo' },
+  editor: {
+    emptyTitle: 'Ningún archivo abierto',
+    emptyHint: 'Elige un archivo en el explorador para empezar.',
+    building: 'Contenido en construcción.',
+  },
+  statusBar: {
+    warnings: (cantidad) => (cantidad === 1 ? '1 aviso' : `${cantidad} avisos`),
+    changeTheme: (actual) => `Cambiar tema (actual: ${actual})`,
+    language: 'Idioma: español',
+  },
+  fileComments: {
+    home: 'Hola, mundo. Esto es lo primero que ves.',
+    about: 'Quién soy y por qué programo',
+    projects: 'Lo que he construido hasta ahora',
+    skills: 'Con qué tecnologías trabajo',
+    experience: 'De dónde vengo y hacia dónde voy',
+    contact: 'Hablemos',
+    readme: 'Léeme primero',
+  },
+  pageTitles: {
+    home: 'Iker Santos',
+    about: 'Sobre mí',
+    projects: 'Proyectos',
+    skills: 'Habilidades',
+    experience: 'Experiencia',
+    contact: 'Contacto',
+    readme: 'README',
+  },
+}
