@@ -2,6 +2,7 @@ import { ActivityBar } from '@/components/ActivityBar'
 import { EditorArea } from '@/components/EditorArea'
 import { MenuBar } from '@/components/MenuBar'
 import { Sidebar } from '@/components/Sidebar'
+import { StatusBar } from '@/components/StatusBar'
 import { TitleBar } from '@/components/TitleBar'
 import { useWorkspaceStore } from '@/store/workspace'
 
@@ -19,6 +20,7 @@ export default function App() {
         {sidebarVisible && <Sidebar />}
         <EditorArea />
       </div>
+      <StatusBar />
     </div>
   )
 }
