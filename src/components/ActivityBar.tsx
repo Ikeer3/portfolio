@@ -28,7 +28,7 @@ export function ActivityBar() {
         title={soon}
         className={BASE}
       >
-        <Icon name={icono} />
+        <Icon name={icono} className="size-6" />
       </button>
     </li>
   )
@@ -48,7 +48,7 @@ export function ActivityBar() {
             onClick={() => showSidebarView('explorer')}
             className={`${BASE} ${ACTIVO}`}
           >
-            <Icon name="files" />
+            <Icon name="files" className="size-6" />
           </button>
         </li>
         <li>
@@ -60,7 +60,7 @@ export function ActivityBar() {
             onClick={() => showSidebarView('search')}
             className={`${BASE} ${ACTIVO}`}
           >
-            <Icon name="search" />
+            <Icon name="search" className="size-6" />
           </button>
         </li>
         {noDisponible({ etiqueta: ui.sourceControl, icono: 'branch' })}
@@ -72,7 +72,7 @@ export function ActivityBar() {
             title={ui.downloadCv}
             className={BASE}
           >
-            <Icon name="download" />
+            <Icon name="download" className="size-6" />
           </a>
         </li>
         {noDisponible({ etiqueta: ui.assistant, icono: 'sparkle' })}
