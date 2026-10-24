@@ -1,4 +1,5 @@
 import { ActivityBar } from '@/components/ActivityBar'
+import { EditorArea } from '@/components/EditorArea'
 import { MenuBar } from '@/components/MenuBar'
 import { Sidebar } from '@/components/Sidebar'
 import { TitleBar } from '@/components/TitleBar'
@@ -16,11 +17,7 @@ export default function App() {
       <div className="flex min-h-0 flex-1">
         <ActivityBar />
         {sidebarVisible && <Sidebar />}
-        <main className="min-w-0 flex-1 overflow-auto p-8">
-          <h1 className="font-display text-display">
-            Iker <span className="text-surname">Santos</span>
-          </h1>
-        </main>
+        <EditorArea />
       </div>
     </div>
   )
