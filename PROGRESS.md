@@ -5,8 +5,10 @@ Permite retomar el trabajo en una conversación nueva sin perder el hilo.
 
 ## Estado actual
 
-- **Fase actual:** 2 · Sistema de diseño y temas (pendiente de empezar)
-- **Fases completadas:** 1
+- **Fase actual:** 3 · Estructura de la interfaz (pendiente de empezar)
+- **Fases completadas:** 1, 2
+- **Producción:** https://portfolio-iker-santos.vercel.app
+- **Repositorio:** https://github.com/Ikeer3/portfolio
 
 ## Fases
 
@@ -36,15 +38,24 @@ Permite retomar el trabajo en una conversación nueva sin perder el hilo.
 - Alias `@` apunta a `src/` (en TypeScript y en Vite).
 - LinkedIn: se usa el enlace del prompt (`linkedin.com/in/iker-santos-insua/`), no el del CV.
 - Paletas ajustadas respecto a los valores orientativos: barra de estado `#005fa3` y acento claro `#0b62b8`, para cumplir contraste ≥ 4.5:1.
-- Repositorio del portfolio sin decidir: se definirá en `VITE_GITHUB_REPO` con datos de respaldo.
+- Repositorio del portfolio: `Ikeer3/portfolio`; ese valor va en `VITE_GITHUB_REPO` (formato propietario/repositorio), también configurado en Vercel.
+- Los temas tienen una única fuente de verdad en `src/themes/`; `applyTheme()` vuelca los tokens como variables CSS y Tailwind las lee (`bg-bg`, `text-fg`, `text-accent`...).
+- El tema se guarda en `localStorage` (clave `iker-portfolio:tema`) con `try/catch`; sin preferencia guardada se respeta el esquema del sistema.
+- Fuentes autoalojadas con Fontsource: JetBrains Mono (cuerpo y código) y Bricolage Grotesque (titulares).
+- Tamaños fluidos `text-display` y `text-title` con `clamp()`.
+- Las pruebas exigen contraste WCAG AA (4.5:1) en 14 pares de color por tema.
 
 ## Pendientes
 
 - [PENDIENTE] Descripciones de los 3 proyectos de GitHub y contribuciones a WordPress.
 - [PENDIENTE] Nivel de cada tecnología (Uso a diario / Con soltura / Aprendiendo).
-- [PENDIENTE] Nombre del repositorio del portfolio.
 - React Native y TypeScript aparecen en el prompt pero no en el CV.
 
 ## Scripts
 
 `npm run dev` · `npm run build` · `npm run lint` · `npm run format` · `npm test`
+
+## Notas para la fase 3
+
+- `App.tsx` tiene un selector de tema provisional que se sustituirá por la interfaz tipo editor.
+- Escala de espaciado de 4 px y zonas táctiles de 44 px mínimo en móvil, aún sin aplicar.
