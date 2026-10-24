@@ -5,8 +5,8 @@ Permite retomar el trabajo en una conversación nueva sin perder el hilo.
 
 ## Estado actual
 
-- **Fase actual:** 3 · Estructura de la interfaz (pendiente de empezar)
-- **Fases completadas:** 1, 2
+- **Fase actual:** 4 · Contenido y páginas (pendiente de empezar)
+- **Fases completadas:** 1, 2, 3
 - **Producción:** https://portfolio-iker-santos.vercel.app
 - **Repositorio:** https://github.com/Ikeer3/portfolio
 
@@ -45,6 +45,14 @@ Permite retomar el trabajo en una conversación nueva sin perder el hilo.
 - Tamaños fluidos `text-display` y `text-title` con `clamp()`.
 - Las pruebas exigen contraste WCAG AA (4.5:1) en 14 pares de color por tema.
 
+- Estructura (fase 3): `TitleBar`, `MenuBar`, `ActivityBar`, `Sidebar` (con `FileTree`), `EditorArea` (`TabBar`, `Breadcrumbs`, `Editor`) y `StatusBar`, montados en `App.tsx`.
+- Archivos del editor y carpetas definidos en `src/content/files.ts`; los textos de la interfaz en `src/content/es/ui.ts` (tipados con `UiStrings`, listos para añadir el inglés). Los componentes los leen con `useUi()`.
+- Estado de pestañas y barra lateral en `src/store/workspace.ts`. Las pestañas no se recuerdan: arranca siempre con `home.tsx`.
+- Al cerrar la pestaña activa se pasa a la vecina de la derecha o, si no hay, a la de la izquierda.
+- Los controles cuya función llega más adelante (menús, buscador de la barra de título, Source control, Asistente, Ajustes) están como `aria-disabled` con el texto «Próximamente».
+- Accesibilidad: pestañas con patrón WAI-ARIA (flechas, Inicio y Fin), árbol como listas con `aria-expanded`, foco visible global.
+- CV en `public/CV_Iker_Santos.pdf`. El repositorio es público, así que el teléfono y el correo del CV quedan visibles en GitHub.
+
 ## Pendientes
 
 - [PENDIENTE] Descripciones de los 3 proyectos de GitHub y contribuciones a WordPress.
@@ -55,7 +63,9 @@ Permite retomar el trabajo en una conversación nueva sin perder el hilo.
 
 `npm run dev` · `npm run build` · `npm run lint` · `npm run format` · `npm test`
 
-## Notas para la fase 3
+## Notas para la fase 4
 
-- `App.tsx` tiene un selector de tema provisional que se sustituirá por la interfaz tipo editor.
-- Escala de espaciado de 4 px y zonas táctiles de 44 px mínimo en móvil, aún sin aplicar.
+- `Editor.tsx` muestra una página provisional (comentario, titular y «Contenido en construcción»); cada archivo pasará a tener su página real en `src/pages/`.
+- Los textos de cada página saldrán de archivos de datos en `src/content/`, nunca escritos en los componentes.
+- Cambiar el tema por ahora solo se puede desde el nombre del tema en la barra de estado; el selector con engranaje llega en la fase 5.
+- Móvil (fase 13): la barra lateral ocupa 240 px fija y todavía no hay menú hamburguesa; zonas táctiles de 44 px pendientes.
