@@ -1,7 +1,37 @@
-/* Estilos globales mínimos; el sistema de diseño llega en la fase 2 */
+@import 'tailwindcss';
+
+/* Los colores viven en variables CSS que cambia applyTheme() según el tema activo.
+   "inline" hace que Tailwind lea la variable en cada uso en lugar de copiar el valor. */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-sidebar: var(--bg-sidebar);
+  --color-activity: var(--bg-activity);
+  --color-status: var(--bg-status);
+  --color-hover: var(--bg-hover);
+  --color-selection: var(--bg-selection);
+  --color-line: var(--border);
+  --color-fg: var(--text);
+  --color-fg-muted: var(--text-muted);
+  --color-on-activity: var(--text-on-activity);
+  --color-on-status: var(--text-on-status);
+  --color-accent: var(--accent);
+  --color-surname: var(--surname);
+  --color-comment: var(--comment);
+}
+
 html,
 body,
 #root {
   height: 100%;
   margin: 0;
+}
+
+/* Valores de respaldo hasta que se aplica el tema (evita un parpadeo en blanco) */
+body {
+  background: var(--bg, #1e1e1e);
+  color: var(--text, #cccccc);
+}
+
+::selection {
+  background: var(--bg-selection);
 }
