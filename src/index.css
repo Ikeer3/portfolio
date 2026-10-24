@@ -1,5 +1,22 @@
 @import 'tailwindcss';
 
+/* Fuentes autoalojadas (sin peticiones a servidores externos) */
+@import '@fontsource-variable/jetbrains-mono/wght.css';
+@import '@fontsource-variable/bricolage-grotesque/wght.css';
+
+/* Tipografía: JetBrains Mono para interfaz y código, Bricolage Grotesque para titulares.
+   Los tamaños grandes son fluidos con clamp() entre móvil y escritorio. */
+@theme {
+  --font-mono:
+    'JetBrains Mono Variable', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  --font-display: 'Bricolage Grotesque Variable', ui-sans-serif, system-ui, sans-serif;
+
+  --text-display: clamp(2.5rem, 1.4rem + 4.6vw, 5rem);
+  --text-display--line-height: 1.02;
+  --text-title: clamp(1.75rem, 1.2rem + 2vw, 2.75rem);
+  --text-title--line-height: 1.1;
+}
+
 /* Los colores viven en variables CSS que cambia applyTheme() según el tema activo.
    "inline" hace que Tailwind lea la variable en cada uso en lugar de copiar el valor. */
 @theme inline {
@@ -28,6 +45,7 @@ body,
 
 /* Valores de respaldo hasta que se aplica el tema (evita un parpadeo en blanco) */
 body {
+  font-family: var(--font-mono);
   background: var(--bg, #1e1e1e);
   color: var(--text, #cccccc);
 }
