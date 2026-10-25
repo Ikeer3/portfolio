@@ -1,32 +1,28 @@
 import type { FileKind } from '@/content/files'
+import css from '@/assets/file-icons/css.svg'
+import html from '@/assets/file-icons/html.svg'
+import javascript from '@/assets/file-icons/javascript.svg'
+import json from '@/assets/file-icons/json.svg'
+import markdown from '@/assets/file-icons/markdown.svg'
+import pdf from '@/assets/file-icons/pdf.svg'
+import react from '@/assets/file-icons/react.svg'
+import typescript from '@/assets/file-icons/typescript.svg'
 
-const ETIQUETAS: Record<FileKind, string> = {
-  tsx: 'TSX',
-  html: 'HTML',
-  js: 'JS',
-  json: 'JSON',
-  ts: 'TS',
-  css: 'CSS',
-  md: 'MD',
+// Icono de la tecnología de cada tipo de archivo (los .tsx usan el logotipo de React)
+const ICONOS: Record<FileKind | 'pdf', string> = {
+  tsx: react,
+  ts: typescript,
+  js: javascript,
+  html,
+  css,
+  json,
+  md: markdown,
+  pdf,
 }
 
-// Insignia con la extensión del archivo; decorativa, el nombre ya está en el texto
-export function FileIcon({
-  tipo,
-  activo = false,
-}: {
-  tipo: FileKind | 'pdf'
-  activo?: boolean
-}) {
-  const etiqueta = tipo === 'pdf' ? 'PDF' : ETIQUETAS[tipo]
+// Decorativo: el nombre del archivo ya aparece como texto junto al icono
+export function FileIcon({ tipo }: { tipo: FileKind | 'pdf' }) {
   return (
-    <span
-      aria-hidden="true"
-      className={`inline-grid h-4 min-w-7 shrink-0 place-items-center rounded-sm border px-1 text-[9px] font-bold leading-none ${
-        activo ? 'border-accent text-accent' : 'border-line text-fg-muted'
-      }`}
-    >
-      {etiqueta}
-    </span>
+    <img src={ICONOS[tipo]} alt="" width={16} height={16} className="size-4 shrink-0" />
   )
 }

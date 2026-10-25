@@ -29,7 +29,7 @@ export function FileTree() {
         onClick={() => openFile(f.id)}
         className={`${FILA} ${sangria} ${activeId === f.id ? 'bg-selection' : ''}`}
       >
-        <FileIcon tipo={f.tipo} activo={activeId === f.id} />
+        <FileIcon tipo={f.tipo} />
         <span className="truncate">{f.nombre}</span>
       </button>
     </li>

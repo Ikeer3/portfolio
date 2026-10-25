@@ -63,7 +63,7 @@ export function TabBar() {
               onClick={() => openFile(id)}
               className="flex items-center gap-2 py-2 pl-3"
             >
-              <FileIcon tipo={archivo.tipo} activo={activa} />
+              <FileIcon tipo={archivo.tipo} />
               {archivo.nombre}
             </button>
             <button
