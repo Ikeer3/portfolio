@@ -34,6 +34,7 @@ export interface UiStrings {
   statusBar: {
     warnings: (cantidad: number) => string
     changeTheme: (actual: string) => string
+    themePickerTitle: string
     language: string
   }
   // Texto de la línea de comentario con la que empieza cada archivo

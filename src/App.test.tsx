@@ -87,14 +87,45 @@ describe('interfaz del editor', () => {
     expect(screen.getAllByRole('link', { name: /cv/i })).toHaveLength(2)
   })
 
-  it('el nombre del tema en la barra de estado rota el tema', async () => {
+  it('el botón del tema abre una ventana emergente y permite elegir otro', async () => {
     const usuario = userEvent.setup()
     render(<App />)
-    await usuario.click(screen.getByRole('button', { name: /cambiar tema/i }))
-    expect(useThemeStore.getState().themeId).toBe('iker-light')
+    await usuario.click(screen.getByRole('button', { name: /elegir tema de color/i }))
+    const menu = screen.getByRole('menu', { name: /tema de color/i })
+    expect(within(menu).getAllByRole('menuitemradio')).toHaveLength(3)
+    expect(within(menu).getByRole('menuitemradio', { name: /iker dark/i })).toBeChecked()
+    await usuario.click(within(menu).getByRole('menuitemradio', { name: /iker amber/i }))
+    expect(useThemeStore.getState().themeId).toBe('iker-amber')
+    expect(screen.queryByRole('menu')).not.toBeInTheDocument()
     expect(
-      screen.getByRole('button', { name: /actual: iker light/i }),
+      screen.getByRole('button', { name: /actual: iker amber/i }),
     ).toBeInTheDocument()
+  })
+
+  it('la ventana de temas se cierra con Escape devolviendo el foco al botón', async () => {
+    const usuario = userEvent.setup()
+    render(<App />)
+    const boton = screen.getByRole('button', { name: /elegir tema de color/i })
+    await usuario.click(boton)
+    await usuario.keyboard('{Escape}')
+    expect(screen.queryByRole('menu')).not.toBeInTheDocument()
+    expect(boton).toHaveFocus()
+  })
+
+  it('la ventana de temas se cierra al hacer clic fuera', async () => {
+    const usuario = userEvent.setup()
+    render(<App />)
+    await usuario.click(screen.getByRole('button', { name: /elegir tema de color/i }))
+    await usuario.click(screen.getByRole('heading', { level: 1 }))
+    expect(screen.queryByRole('menu')).not.toBeInTheDocument()
+  })
+
+  it('se puede elegir tema solo con teclado: flechas y Enter', async () => {
+    const usuario = userEvent.setup()
+    render(<App />)
+    await usuario.click(screen.getByRole('button', { name: /elegir tema de color/i }))
+    await usuario.keyboard('{ArrowDown}{Enter}')
+    expect(useThemeStore.getState().themeId).toBe('iker-light')
   })
 
   it('la barra de estado muestra el lenguaje del archivo activo', async () => {

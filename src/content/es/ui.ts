@@ -47,7 +47,8 @@ export const uiEs: UiStrings = {
   },
   statusBar: {
     warnings: (cantidad) => (cantidad === 1 ? '1 aviso' : `${cantidad} avisos`),
-    changeTheme: (actual) => `Cambiar tema (actual: ${actual})`,
+    changeTheme: (actual) => `Elegir tema de color (actual: ${actual})`,
+    themePickerTitle: 'TEMA DE COLOR',
     language: 'Idioma: español',
   },
   fileComments: {
