@@ -55,7 +55,7 @@ Permite retomar el trabajo en una conversación nueva sin perder el hilo.
 
 - Ajustes visuales pedidos tras la fase 3: iconos de la barra de actividad a 24 px; botones de ventana rojo, amarillo y verde con icono al pasar el cursor; selector de tema como ventana emergente (`ThemePicker`, rol `menu` con `menuitemradio`); iconos de tecnología en los archivos.
 - Los colores de los botones de ventana son fijos (no dependen del tema).
-- Iconos de archivo de Devicon (MIT) copiados en `src/assets/file-icons/`; JSON y Markdown recoloreados en gris; PDF propio. Atribución en `THIRD_PARTY_NOTICES.md`.
+- Iconos de archivo de Devicon (MIT) copiados en `src/assets/file-icons/`; Markdown recoloreado en gris; los iconos de JSON (llaves ámbar) y PDF son propios, porque el logotipo oficial de JSON (un remolino) no se reconocía como tipo de archivo. Atribución en `THIRD_PARTY_NOTICES.md`.
 - CV: se mantiene el original con teléfono y correo en `public/CV_Iker_Santos.pdf` (decisión de Iker).
 
 ## Pendientes

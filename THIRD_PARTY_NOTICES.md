@@ -2,7 +2,7 @@
 
 ## Iconos de archivo (`src/assets/file-icons/`)
 
-Los iconos de TypeScript, JavaScript, HTML5, CSS3, React, JSON y Markdown proceden de
+Los iconos de TypeScript, JavaScript, HTML5, CSS3, React y Markdown proceden de
 [Devicon](https://github.com/devicons/devicon), publicado bajo licencia MIT:
 
 > Copyright (c) 2015 konpa
@@ -18,6 +18,5 @@ Los iconos de TypeScript, JavaScript, HTML5, CSS3, React, JSON y Markdown proced
 >
 > THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
 
-Los iconos de JSON y Markdown se han recoloreado en gris para que se vean bien sobre los temas
-oscuros. Los logotipos son marcas de sus respectivos propietarios y se usan aquí únicamente para
-identificar el tipo de archivo. El icono de PDF es propio.
+El icono de Markdown se ha recoloreado en gris para que se vea bien sobre los temas oscuros. Los logotipos son marcas de sus respectivos propietarios y se usan aquí únicamente para
+identificar el tipo de archivo. Los iconos de JSON (llaves) y PDF son propios.
