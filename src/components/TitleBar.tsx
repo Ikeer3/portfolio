@@ -1,17 +1,14 @@
 import { useUi } from '@/content'
 import { PROJECT_NAME } from '@/config'
+import { WindowButtons } from './WindowButtons'
 
-// Botones de ventana decorativos y buscador falso (abrirá la paleta en la fase 5)
+// Botones de ventana (cerrar, minimizar y pantalla completa) y buscador falso (abrirá la paleta en la fase 5)
 export function TitleBar() {
   const ui = useUi()
 
   return (
     <div className="flex h-9 items-center gap-3 border-b border-line bg-sidebar px-3">
-      <div aria-hidden="true" className="flex w-14 gap-2">
-        {[0, 1, 2].map((i) => (
-          <span key={i} className="size-3 rounded-full border border-line bg-hover" />
-        ))}
-      </div>
+      <WindowButtons />
       <button
         type="button"
         aria-disabled="true"

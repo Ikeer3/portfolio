@@ -4,7 +4,13 @@ import type { FileId } from './files'
 // así TypeScript avisa si falta alguna traducción.
 export interface UiStrings {
   soon: string
-  titleBar: { searchLabel: string }
+  titleBar: {
+    searchLabel: string
+    windowLabel: string
+    close: string
+    minimize: string
+    fullscreen: string
+  }
   menuBar: { label: string; items: readonly string[] }
   activityBar: {
     label: string

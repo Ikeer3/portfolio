@@ -2,7 +2,13 @@ import type { UiStrings } from '../types'
 
 export const uiEs: UiStrings = {
   soon: 'Próximamente',
-  titleBar: { searchLabel: 'Buscar archivos y comandos (Ctrl+P)' },
+  titleBar: {
+    searchLabel: 'Buscar archivos y comandos (Ctrl+P)',
+    windowLabel: 'Controles de ventana',
+    close: 'Cerrar',
+    minimize: 'Minimizar',
+    fullscreen: 'Pantalla completa',
+  },
   menuBar: {
     label: 'Menús',
     items: [
