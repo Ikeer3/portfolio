@@ -53,6 +53,11 @@ Permite retomar el trabajo en una conversación nueva sin perder el hilo.
 - Accesibilidad: pestañas con patrón WAI-ARIA (flechas, Inicio y Fin), árbol como listas con `aria-expanded`, foco visible global.
 - CV en `public/CV_Iker_Santos.pdf`. El repositorio es público, así que el teléfono y el correo del CV quedan visibles en GitHub.
 
+- Ajustes visuales pedidos tras la fase 3: iconos de la barra de actividad a 24 px; botones de ventana rojo, amarillo y verde con icono al pasar el cursor; selector de tema como ventana emergente (`ThemePicker`, rol `menu` con `menuitemradio`); iconos de tecnología en los archivos.
+- Los colores de los botones de ventana son fijos (no dependen del tema).
+- Iconos de archivo de Devicon (MIT) copiados en `src/assets/file-icons/`; JSON y Markdown recoloreados en gris; PDF propio. Atribución en `THIRD_PARTY_NOTICES.md`.
+- CV: se mantiene el original con teléfono y correo en `public/CV_Iker_Santos.pdf` (decisión de Iker).
+
 ## Pendientes
 
 - [PENDIENTE] Descripciones de los 3 proyectos de GitHub y contribuciones a WordPress.
@@ -63,9 +68,11 @@ Permite retomar el trabajo en una conversación nueva sin perder el hilo.
 
 `npm run dev` · `npm run build` · `npm run lint` · `npm run format` · `npm test`
 
+- [PENDIENTE] Iker indicará más adelante qué hacen los botones Cerrar y Pantalla completa de la barra de título (ahora son botones no disponibles).
+
 ## Notas para la fase 4
 
 - `Editor.tsx` muestra una página provisional (comentario, titular y «Contenido en construcción»); cada archivo pasará a tener su página real en `src/pages/`.
 - Los textos de cada página saldrán de archivos de datos en `src/content/`, nunca escritos en los componentes.
-- Cambiar el tema por ahora solo se puede desde el nombre del tema en la barra de estado; el selector con engranaje llega en la fase 5.
+- El tema se elige desde la ventana emergente de la barra de estado; en la fase 5 el engranaje de Ajustes ofrecerá lo mismo.
 - Móvil (fase 13): la barra lateral ocupa 240 px fija y todavía no hay menú hamburguesa; zonas táctiles de 44 px pendientes.
