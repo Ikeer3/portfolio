@@ -2,6 +2,7 @@ import type { UiStrings } from '../types'
 
 export const uiEs: UiStrings = {
   soon: 'Próximamente',
+  common: { newTab: '(se abre en una pestaña nueva)' },
   titleBar: {
     searchLabel: 'Buscar archivos y comandos (Ctrl+P)',
     windowLabel: 'Controles de ventana',

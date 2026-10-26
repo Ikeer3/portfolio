@@ -32,6 +32,16 @@ const ICONOS = {
   chevronRight: <path d="m9 6 6 6-6 6" />,
   chevronDown: <path d="m6 9 6 6 6-6" />,
   folder: <path d="M3.5 7.5v10.5h17V9.5h-8l-2-2z" />,
+  mail: (
+    <>
+      <rect x="3.5" y="5.5" width="17" height="13" rx="2" />
+      <path d="m4 7.5 8 6 8-6" />
+    </>
+  ),
+  external: (
+    <path d="M14 4h6v6 M20 4l-9 9 M18 14v4.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10" />
+  ),
+  check: <path d="m5 12.5 4.5 4.5L19 7.5" />,
 } satisfies Record<string, ReactNode>
 
 export type IconName = keyof typeof ICONOS

@@ -4,6 +4,7 @@ import type { FileId } from './files'
 // así TypeScript avisa si falta alguna traducción.
 export interface UiStrings {
   soon: string
+  common: { newTab: string }
   titleBar: {
     searchLabel: string
     windowLabel: string

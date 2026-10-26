@@ -20,3 +20,9 @@ Los iconos de TypeScript, JavaScript, HTML5, CSS3, React y Markdown proceden de
 
 El icono de Markdown se ha recoloreado en gris para que se vea bien sobre los temas oscuros. Los logotipos son marcas de sus respectivos propietarios y se usan aquí únicamente para
 identificar el tipo de archivo. Los iconos de JSON (llaves) y PDF son propios.
+
+## Logotipos de marca en los enlaces de contacto (`src/components/BrandIcon.tsx`)
+
+Los logotipos de GitHub, LinkedIn y WordPress también proceden de Devicon (licencia MIT, aviso
+anterior). Se muestran en un solo color para que se vean bien en los tres temas y solo identifican
+el enlace al que acompañan. Son marcas de sus respectivos propietarios.
