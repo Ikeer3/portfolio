@@ -1,6 +1,7 @@
 import type { ComponentType } from 'react'
 import type { FileId } from '@/content/files'
 import { AboutPage } from './AboutPage'
+import { ContactPage } from './ContactPage'
 import { ExperiencePage } from './ExperiencePage'
 import { HomePage } from './HomePage'
 import { PlaceholderPage } from './PlaceholderPage'
@@ -14,6 +15,6 @@ export const PAGES: Record<FileId, ComponentType> = {
   projects: ProjectsPage,
   skills: SkillsPage,
   experience: ExperiencePage,
-  contact: () => <PlaceholderPage id="contact" />,
+  contact: ContactPage,
   readme: () => <PlaceholderPage id="readme" />,
 }

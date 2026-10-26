@@ -50,6 +50,16 @@ export interface UiStrings {
     about: { educationTitle: string; fullPath: string }
     skills: { intro: string; levelsLabel: string }
     experience: { intro: string }
+    contact: {
+      intro: string
+      cardsLabel: string
+      formTitle: string
+      labels: Record<'nombre' | 'correo' | 'asunto' | 'mensaje', string>
+      submit: string
+      errors: Record<'required' | 'email' | 'tooShort', string>
+      soon: (correo: string) => string
+    }
+    readme: { fileLabel: string; about: string; stack: string; contact: string }
     projects: {
       intro: string
       role: string

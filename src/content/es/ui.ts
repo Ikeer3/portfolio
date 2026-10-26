@@ -73,6 +73,31 @@ export const uiEs: UiStrings = {
       intro:
         'Formación, experiencia y colaboraciones, de lo más reciente a lo más antiguo.',
     },
+    contact: {
+      intro: 'Escríbeme por donde te resulte más cómodo.',
+      cardsLabel: 'Formas de contacto',
+      formTitle: 'Envíame un mensaje',
+      labels: {
+        nombre: 'Nombre',
+        correo: 'Correo electrónico',
+        asunto: 'Asunto',
+        mensaje: 'Mensaje',
+      },
+      submit: 'Enviar mensaje',
+      errors: {
+        required: 'Este campo es obligatorio.',
+        email: 'Escribe un correo válido, por ejemplo nombre@dominio.com.',
+        tooShort: 'El mensaje debe tener al menos 10 caracteres.',
+      },
+      soon: (correo) =>
+        `Próximamente: el envío del formulario todavía no está activo. Mientras tanto, escríbeme a ${correo}.`,
+    },
+    readme: {
+      fileLabel: 'README.md',
+      about: 'Sobre mí',
+      stack: 'Stack',
+      contact: 'Contacto',
+    },
     projects: {
       intro: 'Lo que he construido en clase y fuera de ella.',
       role: 'Mi parte',
