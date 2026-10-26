@@ -52,6 +52,16 @@ export const uiEs: UiStrings = {
     themePickerTitle: 'TEMA DE COLOR',
     language: 'Idioma: español',
   },
+  pages: {
+    home: {
+      rolesLabel: 'Roles',
+      statsLabel: 'Datos destacados',
+      linksLabel: 'Enlaces',
+      projects: 'Proyectos',
+      about: 'Sobre mí',
+      contact: 'Contacto',
+    },
+  },
   fileComments: {
     home: 'Hola, mundo. Esto es lo primero que ves.',
     about: 'Quién soy y por qué programo',

@@ -38,6 +38,16 @@ export interface UiStrings {
     themePickerTitle: string
     language: string
   }
+  pages: {
+    home: {
+      rolesLabel: string
+      statsLabel: string
+      linksLabel: string
+      projects: string
+      about: string
+      contact: string
+    }
+  }
   // Texto de la línea de comentario con la que empieza cada archivo
   fileComments: Record<FileId, string>
   // Titular grande de cada archivo (el de home lleva el nombre completo)
