@@ -56,17 +56,19 @@ export function HomePage() {
         ))}
       </div>
 
-      <dl aria-label={ui.statsLabel} className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-        {profile.estadisticas.map((dato) => (
-          <div
-            key={dato.etiqueta}
-            className="flex flex-col-reverse gap-1 rounded border border-line bg-sidebar p-4"
-          >
-            <dt className="text-xs text-fg-muted">{dato.etiqueta}</dt>
-            <dd className="font-display text-title text-accent">{dato.valor}</dd>
-          </div>
-        ))}
-      </dl>
+      <div role="group" aria-label={ui.statsLabel}>
+        <dl className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+          {profile.estadisticas.map((dato) => (
+            <div
+              key={dato.etiqueta}
+              className="flex flex-col-reverse gap-1 rounded border border-line bg-sidebar p-4"
+            >
+              <dt className="text-xs text-fg-muted">{dato.etiqueta}</dt>
+              <dd className="font-display text-title text-accent">{dato.valor}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
 
       <ul aria-label={ui.linksLabel} className="flex flex-wrap gap-3">
         {links.map((enlace) => (
