@@ -65,6 +65,14 @@ export const uiEs: UiStrings = {
       educationTitle: 'Formación actual',
       fullPath: 'Ver mi trayectoria completa',
     },
+    skills: {
+      intro: 'Sin porcentajes: cada tecnología indica mi nivel con una etiqueta.',
+      levelsLabel: 'Niveles',
+    },
+    experience: {
+      intro:
+        'Formación, experiencia y colaboraciones, de lo más reciente a lo más antiguo.',
+    },
     projects: {
       intro: 'Lo que he construido en clase y fuera de ella.',
       role: 'Mi parte',

@@ -48,6 +48,8 @@ export interface UiStrings {
       contact: string
     }
     about: { educationTitle: string; fullPath: string }
+    skills: { intro: string; levelsLabel: string }
+    experience: { intro: string }
     projects: {
       intro: string
       role: string

@@ -4,13 +4,14 @@ import { AboutPage } from './AboutPage'
 import { HomePage } from './HomePage'
 import { PlaceholderPage } from './PlaceholderPage'
 import { ProjectsPage } from './ProjectsPage'
+import { SkillsPage } from './SkillsPage'
 
 // Página de cada archivo del editor
 export const PAGES: Record<FileId, ComponentType> = {
   home: HomePage,
   about: AboutPage,
   projects: ProjectsPage,
-  skills: () => <PlaceholderPage id="skills" />,
+  skills: SkillsPage,
   experience: () => <PlaceholderPage id="experience" />,
   contact: () => <PlaceholderPage id="contact" />,
   readme: () => <PlaceholderPage id="readme" />,
