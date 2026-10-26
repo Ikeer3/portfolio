@@ -61,6 +61,20 @@ export const uiEs: UiStrings = {
       about: 'Sobre mí',
       contact: 'Contacto',
     },
+    about: {
+      educationTitle: 'Formación actual',
+      fullPath: 'Ver mi trayectoria completa',
+    },
+    projects: {
+      intro: 'Lo que he construido en clase y fuera de ella.',
+      role: 'Mi parte',
+      technologies: 'Tecnologías',
+      showPreview: 'Ver vista previa',
+      hidePreview: 'Ocultar vista previa',
+      openInNewTab: 'Abrir en pestaña nueva',
+      previewNote: 'Si la vista previa no se muestra, ábrela en una pestaña nueva.',
+      browserLabel: 'Ventana de navegador simulada',
+    },
   },
   fileComments: {
     home: 'Hola, mundo. Esto es lo primero que ves.',

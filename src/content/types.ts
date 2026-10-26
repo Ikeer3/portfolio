@@ -47,6 +47,17 @@ export interface UiStrings {
       about: string
       contact: string
     }
+    about: { educationTitle: string; fullPath: string }
+    projects: {
+      intro: string
+      role: string
+      technologies: string
+      showPreview: string
+      hidePreview: string
+      openInNewTab: string
+      previewNote: string
+      browserLabel: string
+    }
   }
   // Texto de la línea de comentario con la que empieza cada archivo
   fileComments: Record<FileId, string>
