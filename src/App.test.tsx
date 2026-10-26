@@ -2,6 +2,7 @@ import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { beforeEach, describe, expect, it } from 'vitest'
 import App from './App'
+import { FILES } from './content/files'
 import { useThemeStore } from './store/theme'
 import { useWorkspaceStore } from './store/workspace'
 
@@ -136,5 +137,21 @@ describe('interfaz del editor', () => {
     const arbol = screen.getByRole('navigation', { name: /archivos del portfolio/i })
     await usuario.click(within(arbol).getByRole('button', { name: /contact\.css/ }))
     expect(barraEstado.getByText('CSS')).toBeInTheDocument()
+  })
+
+  it('cada archivo del explorador abre su página real con titular, sin contenido provisional', async () => {
+    const usuario = userEvent.setup()
+    render(<App />)
+    const arbol = screen.getByRole('navigation', { name: /archivos del portfolio/i })
+    for (const archivo of FILES) {
+      await usuario.click(
+        within(arbol).getByRole('button', {
+          name: new RegExp(archivo.nombre.replace('.', '\\.')),
+        }),
+      )
+      const panel = screen.getByRole('tabpanel')
+      expect(within(panel).getByRole('heading', { level: 1 })).toBeInTheDocument()
+      expect(panel).not.toHaveTextContent(/en construcción/i)
+    }
   })
 })
