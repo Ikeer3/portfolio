@@ -53,6 +53,7 @@ function ProjectCard({ proyecto }: { proyecto: Project }) {
             className="inline-flex items-center gap-1.5 rounded border border-line px-3 py-1.5 text-[13px] hover:bg-hover"
           >
             {enlace.etiqueta}
+            <span className="sr-only"> · {proyecto.titulo}</span>
             <Icon name="external" className="size-3.5" />
           </SmartLink>
         ))}
