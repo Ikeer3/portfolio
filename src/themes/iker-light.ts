@@ -18,6 +18,7 @@ export const ikerLight: Theme = {
     textOnStatus: '#ffffff',
     accent: '#0b62b8',
     surname: '#1a7f4b',
+    danger: '#b3261e',
     comment: '#2e7d32',
   },
 }

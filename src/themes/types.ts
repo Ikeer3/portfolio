@@ -17,6 +17,7 @@ export interface ThemeTokens {
   accent: string // enlaces, foco y elementos activos
   surname: string // apellido en el titular
   comment: string // líneas de comentario
+  danger: string // errores de validación
 }
 
 export interface Theme {

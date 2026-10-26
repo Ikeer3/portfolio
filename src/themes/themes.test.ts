@@ -16,6 +16,8 @@ const PARES: ReadonlyArray<[keyof ThemeTokens, keyof ThemeTokens]> = [
   ['surname', 'bgSidebar'],
   ['comment', 'bg'],
   ['comment', 'bgSidebar'],
+  ['danger', 'bg'],
+  ['danger', 'bgSidebar'],
   ['textOnActivity', 'bgActivity'],
   ['textOnStatus', 'bgStatus'],
 ]

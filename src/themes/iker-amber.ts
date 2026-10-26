@@ -18,6 +18,7 @@ export const ikerAmber: Theme = {
     textOnStatus: '#ffffff',
     accent: '#e5b43c',
     surname: '#7fd99a',
+    danger: '#ff8a7a',
     comment: '#8fbf6a',
   },
 }

@@ -34,6 +34,7 @@
   --color-accent: var(--accent);
   --color-surname: var(--surname);
   --color-comment: var(--comment);
+  --color-danger: var(--danger);
 }
 
 html,
