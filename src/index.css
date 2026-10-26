@@ -59,3 +59,26 @@ body {
   outline: 2px solid var(--accent);
   outline-offset: -2px;
 }
+
+/* Cursor parpadeante del efecto de escritura; desaparece con "reducir movimiento" */
+.typing-caret {
+  display: inline-block;
+  width: 0.55ch;
+  height: 1.1em;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  background: var(--accent);
+  animation: caret-blink 1s steps(1) infinite;
+}
+
+@keyframes caret-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typing-caret {
+    display: none;
+  }
+}
