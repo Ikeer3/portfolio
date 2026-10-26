@@ -44,7 +44,6 @@ export const uiEs: UiStrings = {
   editor: {
     emptyTitle: 'Ningún archivo abierto',
     emptyHint: 'Elige un archivo en el explorador para empezar.',
-    building: 'Contenido en construcción.',
   },
   statusBar: {
     warnings: (cantidad) => (cantidad === 1 ? '1 aviso' : `${cantidad} avisos`),

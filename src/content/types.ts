@@ -31,7 +31,7 @@ export interface UiStrings {
   }
   tabs: { listLabel: string; close: (nombre: string) => string }
   breadcrumbs: { label: string }
-  editor: { emptyTitle: string; emptyHint: string; building: string }
+  editor: { emptyTitle: string; emptyHint: string }
   statusBar: {
     warnings: (cantidad: number) => string
     changeTheme: (actual: string) => string

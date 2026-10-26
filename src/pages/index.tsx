@@ -4,8 +4,8 @@ import { AboutPage } from './AboutPage'
 import { ContactPage } from './ContactPage'
 import { ExperiencePage } from './ExperiencePage'
 import { HomePage } from './HomePage'
-import { PlaceholderPage } from './PlaceholderPage'
 import { ProjectsPage } from './ProjectsPage'
+import { ReadmePage } from './ReadmePage'
 import { SkillsPage } from './SkillsPage'
 
 // Página de cada archivo del editor
@@ -16,5 +16,5 @@ export const PAGES: Record<FileId, ComponentType> = {
   skills: SkillsPage,
   experience: ExperiencePage,
   contact: ContactPage,
-  readme: () => <PlaceholderPage id="readme" />,
+  readme: ReadmePage,
 }
