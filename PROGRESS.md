@@ -5,8 +5,8 @@ Permite retomar el trabajo en una conversación nueva sin perder el hilo.
 
 ## Estado actual
 
-- **Fase actual:** 4 · Contenido y páginas (pendiente de empezar)
-- **Fases completadas:** 1, 2, 3
+- **Fase actual:** 5 · Paleta de comandos, atajos, menús y ajustes (pendiente de empezar)
+- **Fases completadas:** 1, 2, 3, 4
 - **Producción:** https://portfolio-iker-santos.vercel.app
 - **Repositorio:** https://github.com/Ikeer3/portfolio
 
@@ -58,11 +58,21 @@ Permite retomar el trabajo en una conversación nueva sin perder el hilo.
 - Iconos de archivo de Devicon (MIT) copiados en `src/assets/file-icons/`; Markdown recoloreado en gris; los iconos de JSON (llaves ámbar) y PDF son propios, porque el logotipo oficial de JSON (un remolino) no se reconocía como tipo de archivo. Atribución en `THIRD_PARTY_NOTICES.md`.
 - CV: se mantiene el original con teléfono y correo en `public/CV_Iker_Santos.pdf` (decisión de Iker).
 
+- Contenido (fase 4): todos los datos viven en `src/content/es/` (perfil, enlaces, proyectos, habilidades, experiencia) con tipos en `src/content/data-types.ts`; los componentes solo los muestran (`useContent()`). El inglés se añadirá en la fase 11.
+- Páginas en `src/pages/` (una por archivo) montadas desde `src/pages/index.tsx`.
+- Enlaces de contacto en un único array (`src/content/es/links.ts`); home, contacto y README lo leen.
+- Habilidades: nivel siempre con etiqueta de texto más icono de barras, sin porcentajes. Multimedia y marketing en sección aparte, todo con soltura. Las tecnologías del portfolio no aparecen (hay una prueba que lo vigila).
+- Proyectos: moodboard y blog se previsualizan en un marco de navegador con dirección localhost simulada. El iframe no se carga hasta pulsar «Ver vista previa» y lleva `sandbox` y `referrerPolicy="no-referrer"`; siempre hay enlace para abrir aparte.
+- Formulario de contacto: validación visual completa, sin envío. La lógica de envío está aislada en `src/lib/contact/send.ts` (devuelve «no configurado»).
+- Home: efecto de escritura en el eslogan (`TypingText`), desactivado con `prefers-reduced-motion`.
+- Token de color `danger` añadido a los tres temas (probado con contraste AA).
+- Lo del enfoque actual (página «Sobre mí») se ha redactado a partir de los niveles «aprendiendo» de Iker y de su informe de WP Credits.
+
 ## Pendientes
 
-- [PENDIENTE] Descripciones de los 3 proyectos de GitHub y contribuciones a WordPress.
-- [PENDIENTE] Nivel de cada tecnología (Uso a diario / Con soltura / Aprendiendo).
-- React Native y TypeScript aparecen en el prompt pero no en el CV.
+- [PENDIENTE] Confirmar el estado actual del pull request nº 237 de WordPress/blueprints (no se ha podido verificar; la descripción no afirma su estado).
+- [PENDIENTE] Confirmar cuál es la URL de LinkedIn correcta: el prompt usa `/in/iker-santos-insua/`, el CV y el moodboard `/in/iker-santos-insua-80bbb3299/`.
+- Comprobar que el blog (WordPress.com) y el moodboard (Cloudflare Pages) se muestran dentro del marco; si alguno lo bloquea, el enlace «Abrir en pestaña nueva» sigue funcionando.
 
 ## Scripts
 
@@ -70,9 +80,8 @@ Permite retomar el trabajo en una conversación nueva sin perder el hilo.
 
 - [PENDIENTE] Iker indicará más adelante qué hacen los botones Cerrar y Pantalla completa de la barra de título (ahora son botones no disponibles).
 
-## Notas para la fase 4
+## Notas para la fase 5
 
-- `Editor.tsx` muestra una página provisional (comentario, titular y «Contenido en construcción»); cada archivo pasará a tener su página real en `src/pages/`.
-- Los textos de cada página saldrán de archivos de datos en `src/content/`, nunca escritos en los componentes.
-- El tema se elige desde la ventana emergente de la barra de estado; en la fase 5 el engranaje de Ajustes ofrecerá lo mismo.
-- Móvil (fase 13): la barra lateral ocupa 240 px fija y todavía no hay menú hamburguesa; zonas táctiles de 44 px pendientes.
+- Los menús, el buscador de la barra de título, el engranaje de Ajustes, Source control y el Asistente siguen como `aria-disabled` con «Próximamente».
+- Los botones de ventana (Cerrar, Minimizar, Pantalla completa) esperan que Iker indique su función; el menú Ver → Pantalla completa usará la Fullscreen API.
+- Móvil (fase 13): la barra lateral ocupa 240 px fijos y falta el menú hamburguesa.
