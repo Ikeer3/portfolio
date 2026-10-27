@@ -163,4 +163,16 @@ describe('interfaz del editor', () => {
       document.body.style.overflow || getComputedStyle(document.body).overflow,
     ).not.toBe('scroll')
   })
+
+  it('al abrir otra sección esta aparece arriba del todo, sin heredar el scroll de la anterior', async () => {
+    const usuario = userEvent.setup()
+    render(<App />)
+    const anterior = screen.getByRole('tabpanel')
+    anterior.scrollTop = 400
+    const arbol = screen.getByRole('navigation', { name: /archivos del portfolio/i })
+    await usuario.click(within(arbol).getByRole('button', { name: /about\.html/ }))
+    const nuevo = screen.getByRole('tabpanel')
+    expect(nuevo).not.toBe(anterior)
+    expect(nuevo.scrollTop).toBe(0)
+  })
 })

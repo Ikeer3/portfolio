@@ -20,7 +20,9 @@ export function Editor() {
 
   const Pagina = PAGES[activeId]
   return (
+    // key: cada pestaña monta su propio contenedor, así siempre empieza arriba del todo
     <main
+      key={activeId}
       role="tabpanel"
       id={panelId(activeId)}
       aria-labelledby={tabId(activeId)}
