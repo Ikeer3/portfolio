@@ -154,4 +154,13 @@ describe('interfaz del editor', () => {
       expect(panel).not.toHaveTextContent(/en construcción/i)
     }
   })
+
+  it('el área de contenido contiene los textos ocultos para lectores de pantalla', () => {
+    render(<App />)
+    // Sin "relative", los sr-only absolutos escapan del scroll y crean una segunda barra vertical
+    expect(screen.getByRole('tabpanel')).toHaveClass('relative', 'overflow-auto')
+    expect(
+      document.body.style.overflow || getComputedStyle(document.body).overflow,
+    ).not.toBe('scroll')
+  })
 })

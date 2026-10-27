@@ -24,7 +24,8 @@ export function Editor() {
       role="tabpanel"
       id={panelId(activeId)}
       aria-labelledby={tabId(activeId)}
-      className="min-w-0 flex-1 overflow-auto px-6 py-8 sm:px-10"
+      // "relative" contiene los textos ocultos (sr-only), que si no ensanchan toda la página
+      className="relative min-w-0 flex-1 overflow-auto px-6 py-8 sm:px-10"
     >
       <Pagina />
     </main>

@@ -10,7 +10,7 @@ export default function App() {
   const sidebarVisible = useWorkspaceStore((estado) => estado.sidebarVisible)
 
   return (
-    <div className="flex h-dvh flex-col bg-bg text-fg">
+    <div className="flex h-dvh flex-col overflow-hidden bg-bg text-fg">
       <header>
         <TitleBar />
         <MenuBar />

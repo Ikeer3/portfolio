@@ -46,6 +46,7 @@ body,
 
 /* Valores de respaldo hasta que se aplica el tema (evita un parpadeo en blanco) */
 body {
+  overflow: hidden; /* la aplicación ocupa la ventana; solo hace scroll el área del editor */
   font-family: var(--font-mono);
   background: var(--bg, #1e1e1e);
   color: var(--text, #cccccc);
