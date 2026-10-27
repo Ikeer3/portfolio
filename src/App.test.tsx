@@ -175,4 +175,76 @@ describe('interfaz del editor', () => {
     expect(nuevo).not.toBe(anterior)
     expect(nuevo.scrollTop).toBe(0)
   })
+
+  describe('vistas previas en pestañas', () => {
+    async function abrirMoodboard(usuario: ReturnType<typeof userEvent.setup>) {
+      const arbol = screen.getByRole('navigation', { name: /archivos del portfolio/i })
+      await usuario.click(within(arbol).getByRole('button', { name: /projects\.js/ }))
+      const tarjeta = screen.getByRole('article', { name: /moodboard/i })
+      await usuario.click(
+        within(tarjeta).getByRole('button', { name: /abrir vista previa/i }),
+      )
+    }
+
+    it('abre una pestaña «localhost:5173» con la web dentro de un marco a pantalla completa', async () => {
+      const usuario = userEvent.setup()
+      render(<App />)
+      await abrirMoodboard(usuario)
+      expect(
+        screen.getByRole('tab', { name: /localhost:5173/, selected: true }),
+      ).toBeInTheDocument()
+      const panel = screen.getByRole('tabpanel')
+      const marco = panel.querySelector('iframe')
+      expect(marco).toHaveAttribute('src', 'https://moodboardiker.pages.dev/')
+      expect(marco).toHaveAttribute('title', 'Vista previa del moodboard')
+      // Ocupa toda el área: sin relleno ni scroll propio, y con la barra de dirección simulada
+      expect(panel).not.toHaveClass('px-6')
+      expect(panel).toHaveClass('overflow-hidden')
+      expect(within(panel).getByText('http://localhost:5173/')).toBeInTheDocument()
+    })
+
+    it('muestra la dirección en las migas de pan y «Vista previa» en la barra de estado', async () => {
+      const usuario = userEvent.setup()
+      render(<App />)
+      await abrirMoodboard(usuario)
+      const migas = screen.getByRole('navigation', { name: /ruta del archivo/i })
+      expect(within(migas).getByText('localhost:5173')).toHaveAttribute(
+        'aria-current',
+        'page',
+      )
+      expect(
+        within(screen.getByRole('contentinfo')).getByText('Vista previa'),
+      ).toBeInTheDocument()
+    })
+
+    it('abre cada web en su propia pestaña y se cierra como cualquier otra', async () => {
+      const usuario = userEvent.setup()
+      render(<App />)
+      await abrirMoodboard(usuario)
+      await usuario.click(screen.getByRole('tab', { name: /projects\.js/ }))
+      const blog = screen.getByRole('article', { name: /contribuciones a wordpress/i })
+      await usuario.click(
+        within(blog).getByRole('button', { name: /abrir vista previa/i }),
+      )
+      expect(
+        screen.getByRole('tab', { name: /localhost:8888/, selected: true }),
+      ).toBeInTheDocument()
+      await usuario.click(screen.getByRole('button', { name: 'Cerrar localhost:8888' }))
+      expect(
+        screen.queryByRole('tab', { name: /localhost:8888/ }),
+      ).not.toBeInTheDocument()
+      expect(screen.getByRole('tab', { name: /localhost:5173/ })).toBeInTheDocument()
+    })
+
+    it('el enlace «Abrir en pestaña nueva» sigue disponible dentro de la vista previa', async () => {
+      const usuario = userEvent.setup()
+      render(<App />)
+      await abrirMoodboard(usuario)
+      const enlace = within(screen.getByRole('tabpanel')).getByRole('link', {
+        name: /abrir en pestaña nueva/i,
+      })
+      expect(enlace).toHaveAttribute('href', 'https://moodboardiker.pages.dev/')
+      expect(enlace).toHaveAttribute('target', '_blank')
+    })
+  })
 })
