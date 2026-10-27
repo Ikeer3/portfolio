@@ -10,7 +10,11 @@ export const profileEs: Profile = {
     'Colaborador de WordPress',
     'Perfil audiovisual',
   ],
-  eslogan: 'Innovación, trabajo en equipo y compromiso en cada proyecto.',
+  eslogans: [
+    'Innovación, trabajo en equipo y compromiso en cada proyecto.',
+    'Del mundo audiovisual al desarrollo de software.',
+    'Aprendiendo en clase y compartiendo con la comunidad de WordPress.',
+  ],
   introduccion: [
     'Vengo del mundo ',
     { resaltado: 'audiovisual' },

@@ -37,7 +37,10 @@ export function HomePage() {
         ))}
       </ul>
 
-      <TypingText texto={profile.eslogan} className="min-h-[1.75em] text-xl text-fg" />
+      <TypingText
+        frases={profile.eslogans}
+        className="min-h-[3.5em] text-xl text-fg sm:min-h-[1.75em]"
+      />
 
       <p className="max-w-2xl text-fg-muted">
         <RichTextView texto={profile.introduccion} />

@@ -14,7 +14,8 @@ export interface Profile {
   apellido: string
   ubicacion: string
   roles: readonly string[]
-  eslogan: string
+  // Frases que se escriben y se borran en bucle en la home
+  eslogans: readonly string[]
   introduccion: RichText
   estadisticas: readonly Stat[]
   // Párrafos de la página «sobre mí»

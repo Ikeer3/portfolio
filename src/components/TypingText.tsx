@@ -1,43 +1,40 @@
 import { useEffect, useState } from 'react'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { avanzar, ESTADO_INICIAL, retardoDe, RITMOS, type Ritmos } from '@/lib/typing'
 
 interface TypingTextProps {
-  texto: string
-  velocidadMs?: number
+  frases: readonly string[]
+  ritmos?: Ritmos
   className?: string
 }
 
-// Texto que se escribe letra a letra. Con "reducir movimiento" aparece entero al instante.
-// Los lectores de pantalla reciben siempre el texto completo, no el que se va escribiendo.
-export function TypingText({ texto, velocidadMs = 40, className }: TypingTextProps) {
+// Escribe cada frase letra a letra, la borra con el mismo ritmo y pasa a la siguiente, en bucle.
+// Con "reducir movimiento" no hay animación: se muestra la primera frase entera.
+// Los lectores de pantalla reciben siempre todas las frases completas, no el texto a medias.
+export function TypingText({ frases, ritmos = RITMOS, className }: TypingTextProps) {
   const reducido = useReducedMotion()
-  const [escritas, setEscritas] = useState(reducido ? texto.length : 0)
+  const [estado, setEstado] = useState(ESTADO_INICIAL)
 
   useEffect(() => {
-    if (reducido) {
-      setEscritas(texto.length)
-      return
-    }
-    setEscritas(0)
-    const id = window.setInterval(() => {
-      setEscritas((previas) => {
-        if (previas >= texto.length) {
-          window.clearInterval(id)
-          return previas
-        }
-        return previas + 1
-      })
-    }, velocidadMs)
-    return () => window.clearInterval(id)
-  }, [texto, velocidadMs, reducido])
+    if (reducido || frases.length === 0) return
+    const id = window.setTimeout(
+      () => setEstado((actual) => avanzar(actual, frases)),
+      retardoDe(estado, frases, ritmos),
+    )
+    return () => window.clearTimeout(id)
+  }, [estado, frases, ritmos, reducido])
 
-  const terminado = escritas >= texto.length
+  const primera = frases[0] ?? ''
+  const visible = reducido
+    ? primera
+    : (frases[estado.indice] ?? '').slice(0, estado.escritas)
+
   return (
     <p className={className}>
-      <span className="sr-only">{texto}</span>
+      <span className="sr-only">{frases.join(' ')}</span>
       <span aria-hidden="true">
-        {texto.slice(0, escritas)}
-        {!terminado && <span className="typing-caret" />}
+        {visible}
+        {!reducido && <span className="typing-caret" />}
       </span>
     </p>
   )
