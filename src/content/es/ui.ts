@@ -50,6 +50,7 @@ export const uiEs: UiStrings = {
     changeTheme: (actual) => `Elegir tema de color (actual: ${actual})`,
     themePickerTitle: 'TEMA DE COLOR',
     language: 'Idioma: español',
+    previewLanguage: 'Vista previa',
   },
   pages: {
     home: {
@@ -101,8 +102,7 @@ export const uiEs: UiStrings = {
       intro: 'Lo que he construido en clase y fuera de ella.',
       role: 'Mi parte',
       technologies: 'Tecnologías',
-      showPreview: 'Ver vista previa',
-      hidePreview: 'Ocultar vista previa',
+      showPreview: 'Abrir vista previa',
       openInNewTab: 'Abrir en pestaña nueva',
       previewNote: 'Si la vista previa no se muestra, ábrela en una pestaña nueva.',
       browserLabel: 'Ventana de navegador simulada',

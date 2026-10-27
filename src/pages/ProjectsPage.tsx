@@ -1,15 +1,13 @@
-import { useState } from 'react'
-import { BrowserFrame } from '@/components/BrowserFrame'
 import { Chip } from '@/components/Chip'
 import { Icon } from '@/components/Icon'
 import { PageHeader } from '@/components/PageHeader'
 import { SmartLink } from '@/components/SmartLink'
 import { useContent, useUi, type Project } from '@/content'
+import { useWorkspaceStore } from '@/store/workspace'
 
 function ProjectCard({ proyecto }: { proyecto: Project }) {
   const ui = useUi().pages.projects
-  const [vistaAbierta, setVistaAbierta] = useState(false)
-  const idVista = `vista-${proyecto.id}`
+  const openPreview = useWorkspaceStore((estado) => estado.openPreview)
   const idTitulo = `titulo-${proyecto.id}`
 
   return (
@@ -60,21 +58,14 @@ function ProjectCard({ proyecto }: { proyecto: Project }) {
         {proyecto.vistaPrevia && (
           <button
             type="button"
-            aria-expanded={vistaAbierta}
-            aria-controls={idVista}
-            onClick={() => setVistaAbierta((previo) => !previo)}
+            onClick={() => openPreview(proyecto.id)}
             className="rounded bg-accent px-3 py-1.5 text-[13px] font-semibold text-bg hover:opacity-90"
           >
-            {vistaAbierta ? ui.hidePreview : ui.showPreview}
+            {ui.showPreview}
+            <span className="sr-only"> · {proyecto.titulo}</span>
           </button>
         )}
       </div>
-
-      {proyecto.vistaPrevia && (
-        <div id={idVista} hidden={!vistaAbierta}>
-          {vistaAbierta && <BrowserFrame {...proyecto.vistaPrevia} />}
-        </div>
-      )}
     </article>
   )
 }

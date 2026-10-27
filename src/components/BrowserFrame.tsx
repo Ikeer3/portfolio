@@ -13,7 +13,7 @@ interface BrowserFrameProps {
 export function BrowserFrame({ url, direccion, titulo }: BrowserFrameProps) {
   const ui = useUi().pages.projects
   return (
-    <figure className="overflow-hidden rounded-md border border-line bg-bg">
+    <figure className="flex h-full min-h-0 flex-1 flex-col bg-bg">
       <div
         role="img"
         aria-label={ui.browserLabel}
@@ -37,7 +37,7 @@ export function BrowserFrame({ url, direccion, titulo }: BrowserFrameProps) {
         loading="lazy"
         sandbox="allow-scripts allow-same-origin allow-popups"
         referrerPolicy="no-referrer"
-        className="block h-[26rem] w-full bg-white"
+        className="min-h-0 w-full flex-1 bg-white"
       />
       <figcaption className="flex flex-wrap items-center justify-between gap-2 border-t border-line px-3 py-2 text-xs text-fg-muted">
         <span>{ui.previewNote}</span>

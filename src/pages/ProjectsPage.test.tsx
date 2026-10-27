@@ -2,6 +2,7 @@ import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it } from 'vitest'
 import { contentEs } from '@/content/es'
+import { useWorkspaceStore } from '@/store/workspace'
 import { ProjectsPage } from './ProjectsPage'
 
 describe('ProjectsPage', () => {
@@ -37,41 +38,34 @@ describe('ProjectsPage', () => {
     ).toHaveAttribute('href', 'https://github.com/Ikeer3/hundirFlota')
   })
 
-  it('la vista previa no carga nada hasta que se pide y se puede ocultar', async () => {
+  it('«Abrir vista previa» abre una pestaña del editor y no carga nada dentro de la tarjeta', async () => {
     const usuario = userEvent.setup()
-    render(<ProjectsPage />)
+    useWorkspaceStore.setState({ tabs: ['projects'], activeId: 'projects' })
+    const { container } = render(<ProjectsPage />)
+    expect(container.querySelector('iframe')).toBeNull()
     const moodboard = screen.getByRole('article', { name: /moodboard/i })
-    expect(moodboard.querySelector('iframe')).toBeNull()
-
     await usuario.click(
-      within(moodboard).getByRole('button', { name: 'Ver vista previa' }),
+      within(moodboard).getByRole('button', { name: /abrir vista previa/i }),
     )
-    const marco = moodboard.querySelector('iframe')
-    expect(marco).toHaveAttribute('src', 'https://moodboardiker.pages.dev/')
-    expect(marco).toHaveAttribute('title', 'Vista previa del moodboard')
-    expect(within(moodboard).getByText('http://localhost:5173/')).toBeInTheDocument()
-    expect(
-      within(moodboard).getByRole('link', { name: /abrir en pestaña nueva/i }),
-    ).toHaveAttribute('href', 'https://moodboardiker.pages.dev/')
-
-    await usuario.click(
-      within(moodboard).getByRole('button', { name: 'Ocultar vista previa' }),
-    )
-    expect(moodboard.querySelector('iframe')).toBeNull()
+    expect(useWorkspaceStore.getState().tabs).toEqual(['projects', 'preview:moodboard'])
+    expect(useWorkspaceStore.getState().activeId).toBe('preview:moodboard')
+    expect(container.querySelector('iframe')).toBeNull()
   })
 
-  it('el marco aísla la web mostrada con sandbox y sin referrer', async () => {
+  it('pulsarlo otra vez no duplica la pestaña: solo la activa', async () => {
     const usuario = userEvent.setup()
+    useWorkspaceStore.setState({ tabs: ['projects'], activeId: 'projects' })
     render(<ProjectsPage />)
-    const blog = screen.getByRole('article', { name: /contribuciones a wordpress/i })
-    await usuario.click(within(blog).getByRole('button', { name: 'Ver vista previa' }))
-    const marco = blog.querySelector('iframe')
-    expect(marco?.getAttribute('sandbox')).not.toContain('allow-top-navigation')
-    expect(marco).toHaveAttribute('referrerpolicy', 'no-referrer')
+    const boton = screen.getByRole('button', { name: /abrir vista previa.*moodboard/i })
+    await usuario.click(boton)
+    useWorkspaceStore.setState({ activeId: 'projects' })
+    await usuario.click(boton)
+    expect(useWorkspaceStore.getState().tabs).toEqual(['projects', 'preview:moodboard'])
+    expect(useWorkspaceStore.getState().activeId).toBe('preview:moodboard')
   })
 
   it('solo los proyectos con vista previa ofrecen el botón', () => {
     render(<ProjectsPage />)
-    expect(screen.getAllByRole('button', { name: 'Ver vista previa' })).toHaveLength(2)
+    expect(screen.getAllByRole('button', { name: /abrir vista previa/i })).toHaveLength(2)
   })
 })

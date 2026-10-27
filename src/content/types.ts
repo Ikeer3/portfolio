@@ -37,6 +37,7 @@ export interface UiStrings {
     changeTheme: (actual: string) => string
     themePickerTitle: string
     language: string
+    previewLanguage: string
   }
   pages: {
     home: {
@@ -65,7 +66,6 @@ export interface UiStrings {
       role: string
       technologies: string
       showPreview: string
-      hidePreview: string
       openInNewTab: string
       previewNote: string
       browserLabel: string

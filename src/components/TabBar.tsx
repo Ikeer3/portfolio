@@ -1,15 +1,17 @@
 import type { KeyboardEvent } from 'react'
-import { useUi } from '@/content'
-import { getFile, type FileId } from '@/content/files'
+import { useContent, useUi } from '@/content'
+import type { TabId } from '@/content/files'
+import { describeTab } from '@/lib/tabs'
 import { useWorkspaceStore } from '@/store/workspace'
 import { FileIcon } from './FileIcon'
 import { Icon } from './Icon'
 
-export const tabId = (id: FileId) => `tab-${id}`
-export const panelId = (id: FileId) => `panel-${id}`
+export const tabId = (id: TabId) => `tab-${id}`
+export const panelId = (id: TabId) => `panel-${id}`
 
 export function TabBar() {
   const ui = useUi().tabs
+  const { projects } = useContent()
   const { tabs, activeId, openFile, closeTab } = useWorkspaceStore()
 
   if (tabs.length === 0) return null
@@ -41,7 +43,7 @@ export function TabBar() {
       className="flex shrink-0 overflow-x-auto bg-sidebar"
     >
       {tabs.map((id) => {
-        const archivo = getFile(id)
+        const pestana = describeTab(id, projects)
         const activa = id === activeId
         return (
           <div
@@ -63,13 +65,13 @@ export function TabBar() {
               onClick={() => openFile(id)}
               className="flex items-center gap-2 py-2 pl-3"
             >
-              <FileIcon tipo={archivo.tipo} />
-              {archivo.nombre}
+              <FileIcon tipo={pestana.icono} />
+              {pestana.etiqueta}
             </button>
             <button
               type="button"
-              aria-label={ui.close(archivo.nombre)}
-              title={ui.close(archivo.nombre)}
+              aria-label={ui.close(pestana.etiqueta)}
+              title={ui.close(pestana.etiqueta)}
               onClick={() => closeTab(id)}
               className="mx-1 grid size-6 place-items-center rounded hover:bg-hover"
             >

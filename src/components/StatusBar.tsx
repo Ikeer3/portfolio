@@ -1,5 +1,5 @@
-import { useUi } from '@/content'
-import { getFile } from '@/content/files'
+import { useContent, useUi } from '@/content'
+import { describeTab } from '@/lib/tabs'
 import { DEFAULT_BRANCH, PROJECT_NAME } from '@/config'
 import { useNow } from '@/hooks/useNow'
 import { formatClock } from '@/lib/time'
@@ -11,6 +11,7 @@ const BOTON = 'rounded px-1.5 py-0.5 hover:bg-white/15'
 
 export function StatusBar() {
   const ui = useUi()
+  const { projects } = useContent()
   const activeId = useWorkspaceStore((estado) => estado.activeId)
   const ahora = useNow()
   const hora = formatClock(ahora)
@@ -28,7 +29,9 @@ export function StatusBar() {
       </div>
       <div className="flex items-center gap-1">
         {activeId && (
-          <span className={`${BOTON} max-md:hidden`}>{getFile(activeId).lenguaje}</span>
+          <span className={`${BOTON} max-md:hidden`}>
+            {describeTab(activeId, projects).lenguaje ?? ui.statusBar.previewLanguage}
+          </span>
         )}
         <span className="px-1.5 max-md:hidden">UTF-8</span>
         <span className="px-1.5 max-md:hidden">Prettier</span>

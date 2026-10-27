@@ -1,15 +1,16 @@
 import { Fragment } from 'react'
-import { useUi } from '@/content'
-import { breadcrumbOf, getFile } from '@/content/files'
+import { useContent, useUi } from '@/content'
+import { describeTab } from '@/lib/tabs'
 import { useWorkspaceStore } from '@/store/workspace'
 import { Icon } from './Icon'
 
 export function Breadcrumbs() {
   const ui = useUi().breadcrumbs
+  const { projects } = useContent()
   const activeId = useWorkspaceStore((estado) => estado.activeId)
 
   if (!activeId) return null
-  const ruta = breadcrumbOf(getFile(activeId))
+  const ruta = describeTab(activeId, projects).ruta
 
   return (
     <nav

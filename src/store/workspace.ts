@@ -1,14 +1,14 @@
 import { create } from 'zustand'
-import type { FileId } from '@/content/files'
+import { previewTabId, type TabId } from '@/content/files'
 
 export type SidebarView = 'explorer' | 'search'
 
 // Pestaña que queda activa al cerrar `cerrada`: la vecina de la derecha o, si no hay, la de la izquierda
 export function activeAfterClosing(
-  pestanas: readonly FileId[],
-  cerrada: FileId,
-  activa: FileId | null,
-): FileId | null {
+  pestanas: readonly TabId[],
+  cerrada: TabId,
+  activa: TabId | null,
+): TabId | null {
   if (activa !== cerrada) return activa
   const indice = pestanas.indexOf(cerrada)
   const restantes = pestanas.filter((id) => id !== cerrada)
@@ -16,12 +16,14 @@ export function activeAfterClosing(
 }
 
 interface WorkspaceState {
-  tabs: FileId[]
-  activeId: FileId | null
+  tabs: TabId[]
+  activeId: TabId | null
   sidebarVisible: boolean
   sidebarView: SidebarView
-  openFile: (id: FileId) => void
-  closeTab: (id: FileId) => void
+  openFile: (id: TabId) => void
+  // Abre (o activa, si ya estaba abierta) la vista previa de un proyecto en una pestaña
+  openPreview: (idProyecto: string) => void
+  closeTab: (id: TabId) => void
   closeAllTabs: () => void
   nextTab: () => void
   prevTab: () => void
@@ -42,6 +44,8 @@ export const useWorkspaceStore = create<WorkspaceState>((set, get) => ({
       tabs: estado.tabs.includes(id) ? estado.tabs : [...estado.tabs, id],
       activeId: id,
     })),
+
+  openPreview: (idProyecto) => get().openFile(previewTabId(idProyecto)),
 
   closeTab: (id) =>
     set((estado) => ({
