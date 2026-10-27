@@ -11,7 +11,7 @@ export function ReadmePage() {
   const categorias = [...skills.principales, ...skills.complementarias]
 
   return (
-    <div className="mx-auto flex max-w-4xl flex-col gap-8">
+    <div className="flex max-w-5xl flex-col gap-8">
       <PageHeader id="readme">
         {profile.nombre} <span className="text-surname">{profile.apellido}</span>
       </PageHeader>

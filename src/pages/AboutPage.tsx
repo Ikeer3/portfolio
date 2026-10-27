@@ -10,7 +10,7 @@ export function AboutPage() {
   const dam = experience.hitos.find((hito) => hito.id === 'dam')
 
   return (
-    <div className="mx-auto flex max-w-4xl flex-col gap-8">
+    <div className="flex max-w-5xl flex-col gap-8">
       <PageHeader id="about" />
 
       <div className="grid gap-8 md:grid-cols-[1fr_18rem]">

@@ -84,7 +84,7 @@ export function ProjectsPage() {
   const { projects } = useContent()
 
   return (
-    <div className="mx-auto flex max-w-4xl flex-col gap-8">
+    <div className="flex max-w-5xl flex-col gap-8">
       <PageHeader id="projects" />
       <p className="text-fg-muted">{ui.intro}</p>
       <div className="flex flex-col gap-6">

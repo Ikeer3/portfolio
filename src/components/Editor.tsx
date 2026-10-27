@@ -27,7 +27,7 @@ export function Editor() {
       id={panelId(activeId)}
       aria-labelledby={tabId(activeId)}
       // "relative" contiene los textos ocultos (sr-only), que si no ensanchan toda la página
-      className="relative min-w-0 flex-1 overflow-auto px-6 py-8 sm:px-10"
+      className="relative min-w-0 flex-1 overflow-auto px-6 py-6"
     >
       <Pagina />
     </main>

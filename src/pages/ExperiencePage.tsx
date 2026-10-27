@@ -33,7 +33,7 @@ export function ExperiencePage() {
   const { experience } = useContent()
 
   return (
-    <div className="mx-auto flex max-w-4xl flex-col gap-10">
+    <div className="flex max-w-5xl flex-col gap-10">
       <PageHeader id="experience" />
       <p className="text-fg-muted">{ui.intro}</p>
 
