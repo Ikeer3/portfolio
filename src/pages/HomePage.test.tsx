@@ -62,4 +62,16 @@ describe('HomePage', () => {
       'target',
     )
   })
+
+  it('las cifras de las estadísticas se alinean arriba, aunque la etiqueta ocupe dos líneas', () => {
+    render(<HomePage />)
+    const tarjetas = screen
+      .getByRole('group', { name: 'Datos destacados' })
+      .querySelectorAll('dl > div')
+    expect(tarjetas).toHaveLength(4)
+    for (const tarjeta of tarjetas) {
+      // Columna invertida con el contenido pegado arriba: la cifra queda siempre en la misma línea
+      expect(tarjeta).toHaveClass('flex-col-reverse', 'justify-end')
+    }
+  })
 })

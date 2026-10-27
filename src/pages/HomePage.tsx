@@ -61,7 +61,7 @@ export function HomePage() {
           {profile.estadisticas.map((dato) => (
             <div
               key={dato.etiqueta}
-              className="flex flex-col-reverse gap-1 rounded border border-line bg-sidebar p-4"
+              className="flex flex-col-reverse justify-end gap-1 rounded border border-line bg-sidebar p-4"
             >
               <dt className="text-xs text-fg-muted">{dato.etiqueta}</dt>
               <dd className="font-display text-title text-accent">{dato.valor}</dd>
