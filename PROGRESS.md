@@ -68,6 +68,10 @@ Permite retomar el trabajo en una conversación nueva sin perder el hilo.
 - Token de color `danger` añadido a los tres temas (probado con contraste AA).
 - Lo del enfoque actual (página «Sobre mí») se ha redactado a partir de los niveles «aprendiendo» de Iker y de su informe de WP Credits.
 
+- Correcciones tras revisar la fase 4: los textos `sr-only` se contienen en el área de scroll (`relative` en el panel del editor) para evitar una segunda barra vertical; cada pestaña monta su propio panel (`key`) y siempre empieza arriba; contenido alineado a la izquierda con menos margen (`max-w-5xl`, `px-6 py-6`); cifras de las estadísticas alineadas arriba.
+- Home: tres frases (`profile.eslogans`) que se escriben y se borran en bucle (`src/lib/typing.ts` + `TypingText`). Con `prefers-reduced-motion` se muestra la primera, sin animación. Posible mejora de accesibilidad pendiente de decidir: un control para pausar la animación.
+- Las vistas previas de moodboard y blog se abren como pestañas del editor (`preview:<idProyecto>`), a pantalla completa, con dirección `localhost` simulada. `describeTab()` describe cualquier pestaña (archivo o vista previa).
+
 ## Pendientes
 
 - [PENDIENTE] Confirmar el estado actual del pull request nº 237 de WordPress/blueprints (no se ha podido verificar; la descripción no afirma su estado).
