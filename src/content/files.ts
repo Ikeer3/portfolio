@@ -74,6 +74,14 @@ export const FILES: readonly PortfolioFile[] = [
   },
 ]
 
+// Las vistas previas de proyectos también son pestañas del editor, pero no son archivos del árbol
+export type PreviewTabId = `preview:${string}`
+export type TabId = FileId | PreviewTabId
+
+export const previewTabId = (idProyecto: string): PreviewTabId => `preview:${idProyecto}`
+export const isPreviewTab = (id: TabId): id is PreviewTabId => id.startsWith('preview:')
+export const projectIdOf = (id: PreviewTabId): string => id.slice('preview:'.length)
+
 export const FOLDERS: readonly FolderId[] = ['src', 'data']
 
 // El CV no es una pestaña: se descarga al hacer clic

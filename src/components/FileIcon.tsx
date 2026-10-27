@@ -1,4 +1,5 @@
 import type { FileKind } from '@/content/files'
+import { Icon } from './Icon'
 import css from '@/assets/file-icons/css.svg'
 import html from '@/assets/file-icons/html.svg'
 import javascript from '@/assets/file-icons/javascript.svg'
@@ -21,7 +22,10 @@ const ICONOS: Record<FileKind | 'pdf', string> = {
 }
 
 // Decorativo: el nombre del archivo ya aparece como texto junto al icono
-export function FileIcon({ tipo }: { tipo: FileKind | 'pdf' }) {
+export function FileIcon({ tipo }: { tipo: FileKind | 'pdf' | 'preview' }) {
+  // Las vistas previas llevan un globo de navegador en lugar del logotipo de una tecnología
+  if (tipo === 'preview')
+    return <Icon name="globe" className="size-4 shrink-0 text-accent" />
   return (
     <img src={ICONOS[tipo]} alt="" width={16} height={16} className="size-4 shrink-0" />
   )
