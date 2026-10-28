@@ -11,7 +11,7 @@ const BOTON = 'rounded px-1.5 py-0.5 hover:bg-white/15'
 
 export function StatusBar() {
   const ui = useUi()
-  const { projects } = useContent()
+  const contenido = useContent()
   const activeId = useWorkspaceStore((estado) => estado.activeId)
   const ahora = useNow()
   const hora = formatClock(ahora)
@@ -30,7 +30,7 @@ export function StatusBar() {
       <div className="flex items-center gap-1">
         {activeId && (
           <span className={`${BOTON} max-md:hidden`}>
-            {describeTab(activeId, projects).lenguaje ?? ui.statusBar.previewLanguage}
+            {describeTab(activeId, contenido).lenguaje ?? ui.statusBar.previewLanguage}
           </span>
         )}
         <span className="px-1.5 max-md:hidden">UTF-8</span>

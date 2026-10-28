@@ -11,7 +11,7 @@ export const panelId = (id: TabId) => `panel-${id}`
 
 export function TabBar() {
   const ui = useUi().tabs
-  const { projects } = useContent()
+  const contenido = useContent()
   const { tabs, activeId, openFile, closeTab } = useWorkspaceStore()
 
   if (tabs.length === 0) return null
@@ -43,7 +43,7 @@ export function TabBar() {
       className="flex shrink-0 overflow-x-auto bg-sidebar"
     >
       {tabs.map((id) => {
-        const pestana = describeTab(id, projects)
+        const pestana = describeTab(id, contenido)
         const activa = id === activeId
         return (
           <div

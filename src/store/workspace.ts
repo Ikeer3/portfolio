@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { previewTabId, type TabId } from '@/content/files'
+import { certificateTabId, previewTabId, type TabId } from '@/content/files'
 
 export type SidebarView = 'explorer' | 'search'
 
@@ -23,6 +23,8 @@ interface WorkspaceState {
   openFile: (id: TabId) => void
   // Abre (o activa, si ya estaba abierta) la vista previa de un proyecto en una pestaña
   openPreview: (idProyecto: string) => void
+  // Abre (o activa) el visor de un certificado en una pestaña
+  openCertificate: (idCertificado: string) => void
   closeTab: (id: TabId) => void
   closeAllTabs: () => void
   nextTab: () => void
@@ -46,6 +48,8 @@ export const useWorkspaceStore = create<WorkspaceState>((set, get) => ({
     })),
 
   openPreview: (idProyecto) => get().openFile(previewTabId(idProyecto)),
+
+  openCertificate: (idCertificado) => get().openFile(certificateTabId(idCertificado)),
 
   closeTab: (id) =>
     set((estado) => ({

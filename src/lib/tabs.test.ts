@@ -1,9 +1,14 @@
 import { describe, expect, it } from 'vitest'
 import { contentEs } from '@/content/es'
-import { isPreviewTab, previewTabId, projectIdOf } from '@/content/files'
+import {
+  certificateIdOf,
+  certificateTabId,
+  isCertificateTab,
+  isPreviewTab,
+  previewTabId,
+  projectIdOf,
+} from '@/content/files'
 import { describeTab } from './tabs'
-
-const { projects } = contentEs
 
 describe('identificadores de pestaña', () => {
   it('distingue las vistas previas de los archivos', () => {
@@ -12,11 +17,19 @@ describe('identificadores de pestaña', () => {
     expect(isPreviewTab('home')).toBe(false)
     expect(projectIdOf('preview:moodboard')).toBe('moodboard')
   })
+
+  it('distingue los visores de certificado', () => {
+    expect(certificateTabId('wordpress-credits')).toBe('certificate:wordpress-credits')
+    expect(isCertificateTab('certificate:wordpress-credits')).toBe(true)
+    expect(isCertificateTab('preview:moodboard')).toBe(false)
+    expect(isPreviewTab('certificate:wordpress-credits')).toBe(false)
+    expect(certificateIdOf('certificate:wordpress-credits')).toBe('wordpress-credits')
+  })
 })
 
 describe('describeTab', () => {
   it('describe un archivo con su nombre, ruta y lenguaje', () => {
-    expect(describeTab('skills', projects)).toEqual({
+    expect(describeTab('skills', contentEs)).toEqual({
       etiqueta: 'skills.json',
       ruta: ['data', 'skills.json'],
       icono: 'json',
@@ -25,16 +38,25 @@ describe('describeTab', () => {
   })
 
   it('describe una vista previa con su dirección localhost simulada', () => {
-    expect(describeTab('preview:moodboard', projects)).toEqual({
+    expect(describeTab('preview:moodboard', contentEs)).toEqual({
       etiqueta: 'localhost:5173',
       ruta: ['localhost:5173'],
       icono: 'preview',
       lenguaje: null,
     })
-    expect(describeTab('preview:wordpress', projects).etiqueta).toBe('localhost:8888')
+    expect(describeTab('preview:wordpress', contentEs).etiqueta).toBe('localhost:8888')
   })
 
   it('si el proyecto no existe usa su identificador en lugar de fallar', () => {
-    expect(describeTab('preview:desconocido', projects).etiqueta).toBe('desconocido')
+    expect(describeTab('preview:desconocido', contentEs).etiqueta).toBe('desconocido')
+  })
+
+  it('describe un certificado con el nombre de su PDF y el lenguaje PDF', () => {
+    expect(describeTab('certificate:generative-ai-foundations', contentEs)).toEqual({
+      etiqueta: 'generative-ai-foundations.pdf',
+      ruta: ['generative-ai-foundations.pdf'],
+      icono: 'pdf',
+      lenguaje: 'PDF',
+    })
   })
 })

@@ -76,9 +76,17 @@ export const FILES: readonly PortfolioFile[] = [
 
 // Las vistas previas de proyectos también son pestañas del editor, pero no son archivos del árbol
 export type PreviewTabId = `preview:${string}`
-export type TabId = FileId | PreviewTabId
+// Visor de un certificado: también es una pestaña del editor
+export type CertificateTabId = `certificate:${string}`
+export type TabId = FileId | PreviewTabId | CertificateTabId
 
 export const previewTabId = (idProyecto: string): PreviewTabId => `preview:${idProyecto}`
+export const certificateTabId = (idCertificado: string): CertificateTabId =>
+  `certificate:${idCertificado}`
+export const isCertificateTab = (id: TabId): id is CertificateTabId =>
+  id.startsWith('certificate:')
+export const certificateIdOf = (id: CertificateTabId): string =>
+  id.slice('certificate:'.length)
 export const isPreviewTab = (id: TabId): id is PreviewTabId => id.startsWith('preview:')
 export const projectIdOf = (id: PreviewTabId): string => id.slice('preview:'.length)
 

@@ -6,11 +6,11 @@ import { Icon } from './Icon'
 
 export function Breadcrumbs() {
   const ui = useUi().breadcrumbs
-  const { projects } = useContent()
+  const contenido = useContent()
   const activeId = useWorkspaceStore((estado) => estado.activeId)
 
   if (!activeId) return null
-  const ruta = describeTab(activeId, projects).ruta
+  const ruta = describeTab(activeId, contenido).ruta
 
   return (
     <nav
