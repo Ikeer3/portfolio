@@ -73,7 +73,9 @@ Permite retomar el trabajo en una conversación nueva sin perder el hilo.
 - Las vistas previas de moodboard y blog se abren como pestañas del editor (`preview:<idProyecto>`), a pantalla completa, con dirección `localhost` simulada. `describeTab()` describe cualquier pestaña (archivo o vista previa).
 
 - Etiquetas (`Chip`): borde de acento atenuado que se enciende al pasar el cursor. En Experiencia el orden es formación, experiencia laboral, colaboraciones y certificaciones.
-- [PENDIENTE] Vista previa de las dos certificaciones: Iker aportará los PDF; propuesta de miniatura en la tarjeta y pestaña de visor con descarga.
+- Certificaciones: cada una es una tarjeta con miniatura en Experiencia que abre un visor en una pestaña (`certificate:<id>`) con la imagen a pantalla completa, descarga del PDF, «Abrir PDF en pestaña nueva», zoom (ajustar al ancho / tamaño real) y, si existe, enlace de verificación (solo Pearson). Datos en `src/content/es/experience.ts`; ficheros en `public/certificates/`.
+- Para añadir otro certificado: copiar su PDF a `public/certificates/`, generar la imagen grande (1600 px) y la miniatura (480 px) con `pdftoppm -png -singlefile -scale-to-x 1600 -scale-to-y -1 archivo.pdf salida` y convertirlas a WebP, y añadir una entrada a `certificaciones`. Una prueba comprueba que los ficheros existen.
+- Los PDF de los certificados incluyen el nombre completo y, en el de Pearson, un código de credencial; el repositorio es público (decisión de Iker).
 
 ## Pendientes
 
