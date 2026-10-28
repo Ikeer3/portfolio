@@ -72,6 +72,9 @@ Permite retomar el trabajo en una conversación nueva sin perder el hilo.
 - Home: tres frases (`profile.eslogans`) que se escriben y se borran en bucle (`src/lib/typing.ts` + `TypingText`). Con `prefers-reduced-motion` se muestra la primera, sin animación. Posible mejora de accesibilidad pendiente de decidir: un control para pausar la animación.
 - Las vistas previas de moodboard y blog se abren como pestañas del editor (`preview:<idProyecto>`), a pantalla completa, con dirección `localhost` simulada. `describeTab()` describe cualquier pestaña (archivo o vista previa).
 
+- Etiquetas (`Chip`): borde de acento atenuado que se enciende al pasar el cursor. En Experiencia el orden es formación, experiencia laboral, colaboraciones y certificaciones.
+- [PENDIENTE] Vista previa de las dos certificaciones: Iker aportará los PDF; propuesta de miniatura en la tarjeta y pestaña de visor con descarga.
+
 ## Pendientes
 
 - [PENDIENTE] Confirmar el estado actual del pull request nº 237 de WordPress/blueprints (no se ha podido verificar; la descripción no afirma su estado).
