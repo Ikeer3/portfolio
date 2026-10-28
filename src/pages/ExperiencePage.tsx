@@ -1,6 +1,7 @@
 import { PageHeader } from '@/components/PageHeader'
 import { useContent, useUi, type Milestone, type MilestoneKind } from '@/content'
-import { formatPeriod } from '@/lib/period'
+import { formatDate, formatPeriod } from '@/lib/period'
+import { useWorkspaceStore } from '@/store/workspace'
 
 const ORDEN: readonly MilestoneKind[] = ['formacion', 'experiencia', 'colaboracion']
 
@@ -31,6 +32,7 @@ function MilestoneItem({ hito }: { hito: Milestone }) {
 export function ExperiencePage() {
   const ui = useUi().pages.experience
   const { experience } = useContent()
+  const openCertificate = useWorkspaceStore((estado) => estado.openCertificate)
 
   return (
     <div className="flex max-w-5xl flex-col gap-10">
@@ -59,14 +61,34 @@ export function ExperiencePage() {
         <h2 id="certificaciones" className="font-display text-title">
           {experience.certificacionesTitulo}
         </h2>
-        <ul className="mt-4 flex flex-col gap-2">
+        <ul className="mt-4 grid gap-4 sm:grid-cols-2">
           {experience.certificaciones.map((certificacion) => (
-            <li
-              key={certificacion.nombre}
-              className="rounded border border-line bg-sidebar px-4 py-3 text-[13px]"
-            >
-              <span className="font-semibold text-fg">{certificacion.nombre}</span>
-              <span className="text-fg-muted"> · {certificacion.entidad}</span>
+            <li key={certificacion.id}>
+              {/* Toda la tarjeta es un botón: abre el visor del certificado en una pestaña */}
+              <button
+                type="button"
+                onClick={() => openCertificate(certificacion.id)}
+                className="group flex h-full w-full flex-col overflow-hidden rounded-md border border-accent/40 bg-sidebar text-left transition-colors duration-150 hover:border-accent hover:bg-hover motion-reduce:transition-none"
+              >
+                <img
+                  src={certificacion.miniatura}
+                  alt=""
+                  width={480}
+                  height={Math.round((480 * certificacion.alto) / certificacion.ancho)}
+                  loading="lazy"
+                  className="block aspect-[16/10] w-full border-b border-line bg-white object-cover object-top"
+                />
+                <span className="flex flex-col gap-1 p-4 text-[13px]">
+                  <span className="font-semibold text-fg">{certificacion.nombre}</span>
+                  <span className="text-fg-muted">
+                    {certificacion.entidad} · {ui.issuedOn}{' '}
+                    {formatDate(certificacion.emision)}
+                  </span>
+                  <span className="mt-1 font-semibold text-accent group-hover:underline">
+                    {ui.viewCertificate} →
+                  </span>
+                </span>
+              </button>
             </li>
           ))}
         </ul>
