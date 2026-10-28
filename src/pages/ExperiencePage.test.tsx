@@ -45,4 +45,17 @@ describe('ExperiencePage', () => {
       within(certificaciones).getByText('Generative AI Foundations'),
     ).toBeInTheDocument()
   })
+
+  it('las colaboraciones aparecen debajo de la experiencia laboral', () => {
+    render(<ExperiencePage />)
+    const titulos = screen
+      .getAllByRole('heading', { level: 2 })
+      .map((titulo) => titulo.textContent)
+    expect(titulos).toEqual([
+      'Formación',
+      'Experiencia laboral',
+      'Colaboraciones',
+      'Certificaciones',
+    ])
+  })
 })

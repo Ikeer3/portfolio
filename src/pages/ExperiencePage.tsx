@@ -2,7 +2,7 @@ import { PageHeader } from '@/components/PageHeader'
 import { useContent, useUi, type Milestone, type MilestoneKind } from '@/content'
 import { formatPeriod } from '@/lib/period'
 
-const ORDEN: readonly MilestoneKind[] = ['formacion', 'colaboracion', 'experiencia']
+const ORDEN: readonly MilestoneKind[] = ['formacion', 'experiencia', 'colaboracion']
 
 function MilestoneItem({ hito }: { hito: Milestone }) {
   const { experience } = useContent()
