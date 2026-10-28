@@ -90,12 +90,26 @@ export interface Milestone {
   detalles: readonly string[]
 }
 
+export interface Certification {
+  id: string
+  nombre: string
+  entidad: string
+  emision: string // AAAA-MM-DD
+  pdf: string // ruta pública del PDF original
+  imagen: string // imagen grande para el visor
+  miniatura: string // imagen ligera para la tarjeta
+  ancho: number // dimensiones de la imagen grande (reservan el espacio y evitan saltos)
+  alto: number
+  descripcion: string // texto alternativo de la imagen
+  verificacion?: { url: string; codigo: string }
+}
+
 export interface ExperienceData {
   presente: string
   grupos: Record<MilestoneKind, string>
   hitos: readonly Milestone[] // de más reciente a más antiguo
   certificacionesTitulo: string
-  certificaciones: ReadonlyArray<{ nombre: string; entidad: string }>
+  certificaciones: readonly Certification[]
 }
 
 export interface PortfolioContent {

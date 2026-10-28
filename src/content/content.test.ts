@@ -1,6 +1,11 @@
 import { describe, expect, it } from 'vitest'
 import { contentEs } from './es'
 
+// Lista los ficheros de public/certificates sin cargarlos
+const ficherosPublicos = Object.keys(import.meta.glob('../../public/certificates/*')).map(
+  (ruta) => ruta.replace('../../public', ''),
+)
+
 const { profile, links, projects, skills, experience } = contentEs
 const todasLasHabilidades = [...skills.principales, ...skills.complementarias].flatMap(
   (categoria) => categoria.habilidades,
@@ -74,5 +79,27 @@ describe('integridad de los datos de contenido', () => {
 
   it('las estadísticas del perfil son las cuatro cifras reales', () => {
     expect(profile.estadisticas.map((dato) => dato.valor)).toEqual(['3', '30+', '2', '3'])
+  })
+
+  it('cada certificación tiene su PDF y sus imágenes en public/, con texto alternativo y fecha ISO', () => {
+    expect(experience.certificaciones).toHaveLength(2)
+    for (const certificacion of experience.certificaciones) {
+      for (const ruta of [
+        certificacion.pdf,
+        certificacion.imagen,
+        certificacion.miniatura,
+      ]) {
+        expect(ficherosPublicos, ruta).toContain(ruta)
+      }
+      expect(certificacion.emision).toMatch(/^\d{4}-\d{2}-\d{2}$/)
+      expect(certificacion.descripcion.length).toBeGreaterThan(40)
+      expect(certificacion.ancho).toBeGreaterThan(certificacion.alto)
+    }
+  })
+
+  it('solo el certificado de Pearson tiene enlace de verificación', () => {
+    const conVerificacion = experience.certificaciones.filter((c) => c.verificacion)
+    expect(conVerificacion.map((c) => c.id)).toEqual(['generative-ai-foundations'])
+    expect(conVerificacion[0]?.verificacion?.url).toMatch(/^https:\/\//)
   })
 })

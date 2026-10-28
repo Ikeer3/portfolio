@@ -122,7 +122,32 @@ export const experienceEs: ExperienceData = {
   ],
   certificacionesTitulo: 'Certificaciones',
   certificaciones: [
-    { nombre: 'Generative AI Foundations', entidad: 'Pearson' },
-    { nombre: 'WordPress Credits Certificate', entidad: 'WordPress' },
+    {
+      id: 'generative-ai-foundations',
+      nombre: 'Generative AI Foundations',
+      entidad: 'Pearson',
+      emision: '2026-05-22',
+      pdf: '/certificates/generative-ai-foundations.pdf',
+      imagen: '/certificates/generative-ai-foundations.webp',
+      miniatura: '/certificates/generative-ai-foundations-miniatura.webp',
+      ancho: 1600,
+      alto: 1237,
+      descripcion:
+        'Certificado de Pearson a nombre de Iker Santos Insua por haber completado los requisitos de la certificación Generative AI Foundations. Emitido el 22 de mayo de 2026, caduca a los 5 años y se verifica en verify.certiport.com con el código w9ahh-H9ob.',
+      verificacion: { url: 'https://verify.certiport.com', codigo: 'w9ahh-H9ob' },
+    },
+    {
+      id: 'wordpress-credits',
+      nombre: 'WordPress Credits Certificate',
+      entidad: 'WordPress',
+      emision: '2026-10-01',
+      pdf: '/certificates/wordpress-credits.pdf',
+      imagen: '/certificates/wordpress-credits.webp',
+      miniatura: '/certificates/wordpress-credits-miniatura.webp',
+      ancho: 1600,
+      alto: 900,
+      descripcion:
+        'Certificado de finalización del programa WordPress Credits, otorgado a Iker Santos Insua en reconocimiento de haberlo completado con éxito. Fecha de finalización: 1 de octubre de 2026. Firmado por Matt Mullenweg, fundador de WordPress Foundation.',
+    },
   ],
 }

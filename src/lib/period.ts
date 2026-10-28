@@ -15,3 +15,9 @@ export function formatPeriod(
   const fin = formatearFecha(hasta)
   return inicio === fin ? inicio : `${inicio} – ${fin}`
 }
+
+// "2026-05-22" -> "22/05/2026"
+export function formatDate(fechaIso: string): string {
+  const [anio, mes, dia] = fechaIso.split('-')
+  return `${dia}/${mes}/${anio}`
+}
