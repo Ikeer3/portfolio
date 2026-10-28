@@ -247,4 +247,57 @@ describe('interfaz del editor', () => {
       expect(enlace).toHaveAttribute('target', '_blank')
     })
   })
+
+  describe('certificados en pestañas', () => {
+    async function abrirCertificado(
+      usuario: ReturnType<typeof userEvent.setup>,
+      nombre: RegExp,
+    ) {
+      const arbol = screen.getByRole('navigation', { name: /archivos del portfolio/i })
+      await usuario.click(within(arbol).getByRole('button', { name: /experience\.ts/ }))
+      await usuario.click(screen.getByRole('button', { name: nombre }))
+    }
+
+    it('abre la pestaña con el nombre del PDF y el visor a pantalla completa', async () => {
+      const usuario = userEvent.setup()
+      render(<App />)
+      await abrirCertificado(usuario, /Generative AI Foundations/)
+      expect(
+        screen.getByRole('tab', {
+          name: /generative-ai-foundations\.pdf/,
+          selected: true,
+        }),
+      ).toBeInTheDocument()
+      const panel = screen.getByRole('tabpanel')
+      expect(panel).not.toHaveClass('px-6')
+      expect(within(panel).getByRole('img', { name: /Pearson/ })).toBeInTheDocument()
+      expect(
+        within(panel).getByRole('link', { name: /descargar pdf/i }),
+      ).toBeInTheDocument()
+    })
+
+    it('muestra la ruta y PDF en la barra de estado', async () => {
+      const usuario = userEvent.setup()
+      render(<App />)
+      await abrirCertificado(usuario, /WordPress Credits Certificate/)
+      const migas = screen.getByRole('navigation', { name: /ruta del archivo/i })
+      expect(within(migas).getByText('wordpress-credits.pdf')).toHaveAttribute(
+        'aria-current',
+        'page',
+      )
+      expect(within(screen.getByRole('contentinfo')).getByText('PDF')).toBeInTheDocument()
+    })
+
+    it('al cerrar el visor se vuelve a la pestaña anterior', async () => {
+      const usuario = userEvent.setup()
+      render(<App />)
+      await abrirCertificado(usuario, /WordPress Credits Certificate/)
+      await usuario.click(
+        screen.getByRole('button', { name: 'Cerrar wordpress-credits.pdf' }),
+      )
+      expect(
+        screen.getByRole('tab', { name: /experience\.ts/, selected: true }),
+      ).toBeInTheDocument()
+    })
+  })
 })

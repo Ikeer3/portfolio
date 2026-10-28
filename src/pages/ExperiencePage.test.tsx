@@ -1,6 +1,8 @@
 import { render, screen, within } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, expect, it } from 'vitest'
 import { contentEs } from '@/content/es'
+import { useWorkspaceStore } from '@/store/workspace'
 import { ExperiencePage } from './ExperiencePage'
 
 describe('ExperiencePage', () => {
@@ -37,13 +39,49 @@ describe('ExperiencePage', () => {
     ).toBeInTheDocument()
   })
 
-  it('muestra las certificaciones', () => {
+  it('muestra cada certificación como tarjeta con miniatura, entidad y fecha de emisión', () => {
     render(<ExperiencePage />)
     const certificaciones = screen.getByRole('region', { name: 'Certificaciones' })
-    expect(within(certificaciones).getAllByRole('listitem')).toHaveLength(2)
-    expect(
-      within(certificaciones).getByText('Generative AI Foundations'),
-    ).toBeInTheDocument()
+    const tarjetas = within(certificaciones).getAllByRole('button')
+    expect(tarjetas).toHaveLength(2)
+    const pearson = within(certificaciones).getByRole('button', {
+      name: /Generative AI Foundations/,
+    })
+    expect(pearson).toHaveTextContent('Pearson · Emitido el 22/05/2026')
+    expect(pearson.querySelector('img')).toHaveAttribute(
+      'src',
+      '/certificates/generative-ai-foundations-miniatura.webp',
+    )
+    expect(pearson.querySelector('img')).toHaveAttribute('alt', '')
+    expect(pearson).toHaveTextContent('Ver certificado')
+  })
+
+  it('pulsar una tarjeta abre el visor de ese certificado en una pestaña', async () => {
+    const usuario = userEvent.setup()
+    useWorkspaceStore.setState({ tabs: ['experience'], activeId: 'experience' })
+    render(<ExperiencePage />)
+    await usuario.click(
+      screen.getByRole('button', { name: /WordPress Credits Certificate/ }),
+    )
+    expect(useWorkspaceStore.getState().tabs).toEqual([
+      'experience',
+      'certificate:wordpress-credits',
+    ])
+    expect(useWorkspaceStore.getState().activeId).toBe('certificate:wordpress-credits')
+  })
+
+  it('pulsarla de nuevo no duplica la pestaña', async () => {
+    const usuario = userEvent.setup()
+    useWorkspaceStore.setState({ tabs: ['experience'], activeId: 'experience' })
+    render(<ExperiencePage />)
+    const tarjeta = screen.getByRole('button', { name: /Generative AI Foundations/ })
+    await usuario.click(tarjeta)
+    useWorkspaceStore.setState({ activeId: 'experience' })
+    await usuario.click(tarjeta)
+    expect(useWorkspaceStore.getState().tabs).toEqual([
+      'experience',
+      'certificate:generative-ai-foundations',
+    ])
   })
 
   it('las colaboraciones aparecen debajo de la experiencia laboral', () => {

@@ -39,7 +39,7 @@ export function Editor() {
       id={panelId(activeId)}
       aria-labelledby={tabId(activeId)}
       className={`relative min-w-0 flex-1 ${
-        isPreviewTab(activeId)
+        isPreviewTab(activeId) || isCertificateTab(activeId)
           ? 'flex flex-col overflow-hidden'
           : 'overflow-auto px-6 py-6'
       }`}
