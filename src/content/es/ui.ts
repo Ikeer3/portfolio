@@ -72,6 +72,17 @@ export const uiEs: UiStrings = {
     experience: {
       intro:
         'Formación, experiencia y colaboraciones, de lo más reciente a lo más antiguo.',
+      viewCertificate: 'Ver certificado',
+      issuedOn: 'Emitido el',
+    },
+    certificate: {
+      toolbarLabel: 'Acciones del certificado',
+      download: 'Descargar PDF',
+      openPdf: 'Abrir PDF en pestaña nueva',
+      verify: 'Verificar credencial',
+      code: 'Código',
+      zoomIn: 'Ver a tamaño real',
+      zoomOut: 'Ajustar al ancho',
     },
     contact: {
       intro: 'Escríbeme por donde te resulte más cómodo.',

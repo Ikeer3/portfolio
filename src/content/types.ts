@@ -50,7 +50,16 @@ export interface UiStrings {
     }
     about: { educationTitle: string; fullPath: string }
     skills: { intro: string; levelsLabel: string }
-    experience: { intro: string }
+    experience: { intro: string; viewCertificate: string; issuedOn: string }
+    certificate: {
+      toolbarLabel: string
+      download: string
+      openPdf: string
+      verify: string
+      code: string
+      zoomIn: string
+      zoomOut: string
+    }
     contact: {
       intro: string
       cardsLabel: string

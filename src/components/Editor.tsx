@@ -1,6 +1,7 @@
 import { useUi } from '@/content'
 import { isCertificateTab, isPreviewTab, type TabId } from '@/content/files'
 import { PAGES } from '@/pages'
+import { CertificateViewer } from '@/pages/CertificateViewer'
 import { PreviewTab } from '@/pages/PreviewTab'
 import { useWorkspaceStore } from '@/store/workspace'
 import { panelId, tabId } from './TabBar'
@@ -8,7 +9,7 @@ import { panelId, tabId } from './TabBar'
 // Página de un archivo o marco de navegador, según el tipo de pestaña
 function Contenido({ id }: { id: TabId }) {
   if (isPreviewTab(id)) return <PreviewTab id={id} />
-  if (isCertificateTab(id)) return null // el visor llega en el siguiente commit
+  if (isCertificateTab(id)) return <CertificateViewer id={id} />
   const Pagina = PAGES[id]
   return <Pagina />
 }
